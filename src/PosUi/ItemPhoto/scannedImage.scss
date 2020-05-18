@@ -1,0 +1,27 @@
+@import '../pos_ui.scss';
+.videoContainer {
+  .videoLabel {
+  }
+  .cameraStyle {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fbfbfb;
+  }
+}
+
+.cameraPlaceholder {
+  margin-left: 35px;
+  -webkit-box-shadow: 0px 4px 16px 0px #eaeaea;
+  -moz-box-shadow: 0px 4px 16px 0px #eaeaea;
+  box-shadow: 0px 4px 16px 0px #eaeaea;
+  border-radius: 4px;
+  width: 320px;
+  height: 240px;
+}
+
+.scannedItemImage {
+  width: 320px;
+  height: 240px;
+  object-fit: contain; // same as scale-down
+  // object-fit: cover;
+  // object-fit: fill; //default
+}

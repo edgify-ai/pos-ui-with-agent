@@ -1,0 +1,98 @@
+{
+  "fruits": {
+    "banana": {
+      "label": "Banana",
+      "price": 0,
+      "image": "/item_images/images_pub/Banana.png"
+    },
+    "granny_smith_apple": {
+      "label": "Granny Smith Apple",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleSmith.png"
+    },
+    "red_delicious_apple": {
+      "label": "Red Delicious Apple",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleHermon.png"
+    }
+  },
+  "vegetables": {
+    "large_lemon": {
+      "label": "Large Lemon",
+      "price": 0,
+      "image": "/item_images/images_pub/Lemon.png"
+    },
+    "lime": {
+      "label": "Lime",
+      "price": 0,
+      "image": "/item_images/images_pub/lime.jpg"
+    },
+    "avocado": {
+      "label": "Avocado",
+      "price": 0,
+      "image": "/item_images/images_pub/Avocado.png"
+    },
+    "red_bell_pepper": {
+      "label": "Red Bell Pepper",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperRed.png"
+    },
+    "green_bell_pepper": {
+      "label": "Green Bell Pepper",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperGreen.png"
+    },
+    "yellow_bell_pepper": {
+      "label": "Yellow Bell Pepper",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperYellow.png"
+    }
+  },
+  "pastries": {},
+  "meat": {},
+  "groceries": {
+    "pure_canola_oil": {
+      "label": "Pure Canola Oil",
+      "price": 0,
+      "image": "/item_images/images_pub/pure_canola_oil.png"
+    },
+    "vino_de_vasaro_pinot_noir": {
+      "label": "Vino de Vasaro Pinot Noir",
+      "price": 0,
+      "image": "/item_images/images_pub/cheap_red_blend_wine.png"
+    },
+    "kellogs_frosted_flakes": {
+      "label": "Kellogs Frosted Flakes",
+      "price": 0,
+      "image": "/item_images/images_pub/kellog_frosted_flakes.png"
+    },
+    "hedgeline_pinot_noir": {
+      "label": "Hedgeline Pinot Noir",
+      "price": 0,
+      "image": "/item_images/images_pub/expensive_pinot_noir_wine.png"
+    },
+    "bertolli_organic_olive_oil": {
+      "label": "Bertolli Organic Olive Oil",
+      "price": 0,
+      "image": "/item_images/images_pub/bertolli_organic_olive_oil.png"
+    },
+    "extra_sweet_watermelon_gum": {
+      "label": "Extra Sweet Watermelon Gum",
+      "price": 0,
+      "image": "/item_images/images_pub/extra_sweet_watermelon_gum.png"
+    },
+    "ranch_buttermilk_dressing": {
+      "label": "Ranch Buttermilk Dressing",
+      "price": 0,
+      "image": "/item_images/images_pub/ranch_buttermilk_dressing.png"
+    }
+  },
+  "more": {},
+  "no_item": {
+    "no_item": {
+      "label": "No Item",
+      "price": 0,
+      "image": "/item_images/images_pub/NoFruit.jpg"
+    }
+  }
+}

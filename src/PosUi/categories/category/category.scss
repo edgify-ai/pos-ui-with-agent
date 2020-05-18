@@ -1,0 +1,59 @@
+.categoryItem {
+  %categoryImage {
+    width: 185px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    font-family: 'Exo 2';
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: center;
+    color: #646466;
+    text-transform: capitalize;
+    background-size: cover;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    // border-radius-top-left: ;
+  }
+  .moreOptions {
+    @extend %categoryImage;
+    background-image: url('../../../images/more.png');
+    background-size: 35px;
+  }
+  .categoryLabel {
+    @extend %categoryImage;
+    text-align: center;
+    padding-top: 10px;
+    vertical-align: middle;
+    font-size: 20px;
+  }
+  .categoryImage-dairy {
+    @extend %categoryImage;
+    background-image: url('../../../images/dairy.png');
+  }
+  .categoryImage-groceries {
+    @extend %categoryImage;
+    background-image: url('../../../images/groceries.png');
+  }
+  .categoryImage-fruits {
+    @extend %categoryImage;
+    background-image: url('../../../images/fruits.png');
+  }
+  .categoryImage-meat {
+    @extend %categoryImage;
+    background-image: url('../../../images/meat.png');
+  }
+  .categoryImage-pastries {
+    @extend %categoryImage;
+    background-image: url('../../../images/pastries.png');
+  }
+  .categoryImage-vegetables {
+    @extend %categoryImage;
+    background-image: url('../../../images/vegetables.png');
+  }
+}

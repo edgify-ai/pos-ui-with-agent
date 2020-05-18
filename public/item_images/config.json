@@ -1,0 +1,342 @@
+{
+  "fruits": {
+    "AppleHermon": {
+      "label": "Apple Hermon",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleHermon.png"
+    },
+    "ApplePinkLady": {
+      "label": "Apple Pink Lady",
+      "price": 0,
+      "image": "/item_images/images_pub/ApplePinkLady.png"
+    },
+    "AppleSmith": {
+      "label": "Apple Smith",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleSmith.png"
+    },
+    "Banana": {
+      "label": "Banana",
+      "price": 0,
+      "image": "/item_images/images_pub/Banana.png"
+    },
+    "Clementine": {
+      "label": "Clementine",
+      "price": 0,
+      "image": "/item_images/images_pub/Clementine.png"
+    },
+    "Grapefruit": {
+      "label": "Grapefruit",
+      "price": 0,
+      "image": "/item_images/images_pub/Grapefruit.png"
+    },
+    "Kiwi": {
+      "label": "Kiwi",
+      "price": 0,
+      "image": "/item_images/images_pub/Kiwi.png"
+    },
+    "Orange": {
+      "label": "Orange",
+      "price": 0,
+      "image": "/item_images/images_pub/Orange.png"
+    },
+    "Peach": {
+      "label": "Peach",
+      "price": 0,
+      "image": "/item_images/images_pub/Peach.png"
+    },
+    "PearGreen": {
+      "label": "Pear Green",
+      "price": 0,
+      "image": "/item_images/images_pub/PearGreen.png"
+    },
+    "Persimmon": {
+      "label": "Persimmon",
+      "price": 0,
+      "image": "/item_images/images_pub/Persimmon.png"
+    },
+    "PearAsianNM": {
+      "label": "Pear Asian",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-asianpear.png"
+    },
+    "PearConferenceNM": {
+      "label": "Pear Conference",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-conferencepear.png"
+    },
+    "CustardAppleNM": {
+      "label": "Custard Apple",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-custardapple.png"
+    },
+    "GrapesGoldenGlobeNM": {
+      "label": "Grapes Golden Globe",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-goldenglobegrapes.png"
+    },
+    "MelonGoldenHoneydewNM": {
+      "label": "Melon Golden Honeydew",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-goldenhoneydewmelon.png"
+    },
+    "GuavaNM": {
+      "label": "Guava",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-guava.png"
+    },
+    "LycheeNM": {
+      "label": "Lychee",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-lychee.png"
+    },
+    "MangoNM": {
+      "label": "Mango",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-mango.png"
+    },
+    "MelonNM": {
+      "label": "Melon",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-melon.png"
+    },
+    "PapayaNM": {
+      "label": "Papaya",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-papaya.png"
+    },
+    "PineappleNM": {
+      "label": "Pineapple",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-pineapple.png"
+    },
+    "GrapesPinotNoirNM": {
+      "label": "Grapes Pinot Noir",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-pinotnoirgrapes.png"
+    },
+    "QuinceNM": {
+      "label": "Quince",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-quince.png"
+    },
+    "GrapesScarlettNM": {
+      "label": "Grapes Scarlett",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-scarlettgrapes.png"
+    },
+    "StrawberryNM": {
+      "label": "Strawberry",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-strawberry.png"
+    }
+  },
+  "vegetables": {
+    "Avocado": {
+      "label": "Avocado",
+      "price": 0,
+      "image": "/item_images/images_pub/Avocado.png"
+    },
+    "Beet": {
+      "label": "Beet",
+      "price": 0,
+      "image": "/item_images/images_pub/Beet.png"
+    },
+    "BellPepperGreen": {
+      "label": "Bell Pepper Green",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperGreen.png"
+    },
+    "BellPepperRed": {
+      "label": "Bell Pepper Red",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperRed.png"
+    },
+    "BellPepperYellow": {
+      "label": "Bell Pepper Yellow",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperYellow.png"
+    },
+    "Cabbage": {
+      "label": "Cabbage",
+      "price": 0,
+      "image": "/item_images/images_pub/Cabbage.png"
+    },
+    "Carrot": {
+      "label": "Carrot",
+      "price": 0,
+      "image": "/item_images/images_pub/Carrot.png"
+    },
+    "Cauliflower": {
+      "label": "Cauliflower",
+      "price": 0,
+      "image": "/item_images/images_pub/Cauliflower.png"
+    },
+    "Cucumber": {
+      "label": "Cucumber",
+      "price": 0,
+      "image": "/item_images/images_pub/Cucumber.png"
+    },
+    "Eggplant": {
+      "label": "Eggplant",
+      "price": 0,
+      "image": "/item_images/images_pub/Eggplant.png"
+    },
+    "Kohlrabi": {
+      "label": "Kohlrabi",
+      "price": 0,
+      "image": "/item_images/images_pub/Kohlrabi.png"
+    },
+    "Lemon": {
+      "label": "Lemon",
+      "price": 0,
+      "image": "/item_images/images_pub/Lemon.png"
+    },
+    "OnionPurple": {
+      "label": "Onion Purple",
+      "price": 0,
+      "image": "/item_images/images_pub/OnionPurple.png"
+    },
+    "OnionWhite": {
+      "label": "Onion White",
+      "price": 0,
+      "image": "/item_images/images_pub/OnionWhite.png"
+    },
+    "Potato": {
+      "label": "Potato",
+      "price": 0,
+      "image": "/item_images/images_pub/Potato.png"
+    },
+    "PotatoRed": {
+      "label": "Potato Red",
+      "price": 0,
+      "image": "/item_images/images_pub/PotatoRed.png"
+    },
+    "SpicyPepperGreen": {
+      "label": "Spicy Pepper Green",
+      "price": 0,
+      "image": "/item_images/images_pub/SpicyPepperGreen.png"
+    },
+    "SweetPotato": {
+      "label": "Sweet Potato",
+      "price": 0,
+      "image": "/item_images/images_pub/SweetPotato.png"
+    },
+    "Tomato": {
+      "label": "Tomato",
+      "price": 0,
+      "image": "/item_images/images_pub/Tomato.png"
+    },
+    "Zucchini": {
+      "label": "Zucchini",
+      "price": 0,
+      "image": "/item_images/images_pub/Zucchini.png"
+    },
+    "SquashAcornNM": {
+      "label": "Squash Acorn",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-acornsquash.png"
+    },
+    "ArugulaNM": {
+      "label": "Arugula",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-arugula.png"
+    },
+    "BellPepperOrangeNM": {
+      "label": "Bell Pepper Orange",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-bellpepperorange.png"
+    },
+    "CabbagePurpleNM": {
+      "label": "Cabbage Purple",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-cabbagepurple.png"
+    },
+    "CherryTomatoesNM": {
+      "label": "Tomato Cherry",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-cherrytomato.png"
+    },
+    "DillNM": {
+      "label": "Dill",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-dill.png"
+    },
+    "FennelNM": {
+      "label": "Fennel",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-fennel.png"
+    },
+    "JerusalemArtichokeNM": {
+      "label": "Jerusalem Artichoke",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-jerusalemartichoke.png"
+    },
+    "LettuceIcebergNM": {
+      "label": "Lettuce Iceberg",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-lettuceiceberg.png"
+    },
+    "LettuceRomaineNM": {
+      "label": "Lettuce Romaine",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-lettuceromaine.png"
+    },
+    "MintNM": {
+      "label": "Mint",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-mint.png"
+    },
+    "MushroomsNM": {
+      "label": "Mushrooms",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-mushroom.png"
+    },
+    "OreganoNM": {
+      "label": "Oregano",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-oregano.png"
+    },
+    "ParsleyNM": {
+      "label": "Parsley",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-parsley.png"
+    },
+    "PumpkinNM": {
+      "label": "Pumpkin",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-pumpkin.png"
+    },
+    "RadishNM": {
+      "label": "Radish",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-radish.png"
+    },
+    "ScallionNM": {
+      "label": "Scallion",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-scallion.png"
+    },
+    "SquashNM": {
+      "label": "Squash",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-squash.png"
+    },
+    "OtherFruit": {
+      "label": "OtherFruit",
+      "price": 0,
+      "image": "/item_images/images_pub/NoFruit.jpg"
+    }
+  },
+  "pastries": {},
+  "meat": {},
+  "groceries": {},
+  "more": {},
+  "NoFruit": {
+    "NoFruit": {
+      "label": "No Item",
+      "price": 0,
+      "image": "/item_images/images_pub/NoFruit.jpg"
+    }
+  }
+}

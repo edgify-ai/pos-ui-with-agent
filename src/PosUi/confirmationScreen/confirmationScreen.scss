@@ -1,0 +1,193 @@
+$rightSideWidth: 512px;
+
+.dashboardWrapper {
+  // width: 1024px;
+  // height: 768px;
+  // height: calc(100vh - 97px);
+  // height: 600px;
+  // height: 100vh;
+
+  // .leftSide {
+  //   // border-right: 1px solid rgba(0, 0, 0, 0.2);
+  //   width: 393px;
+  //   // height: 671px;
+  //   height: calc(100vh - 170px);
+  //   padding-top: 54px;
+  //   background-color: white;
+  //   box-shadow: 0px 5px 55px 0 rgba(0, 0, 0, 0.07);
+
+  //   table {
+  //     width: 100%;
+
+  //     td {
+  //       text-align: center;
+  //     }
+  //   }
+  // }
+
+  // .rightSide {
+  //   padding-top: 54px;
+  //   padding-left: 34px;
+  // }
+
+  .itemImageAndLabelProps {
+    width: 80%;
+    .chosenItemImageContainer {
+      margin: 18px 33px 33px 33px;
+      //   width: 80%;
+      // height: 288px;
+      height: 262px;
+      // background-color: yellow;
+      box-shadow: 0px 5px 55px 0 rgba(0, 0, 0, 0.07);
+      border-radius: 4px;
+      .chosenItemImage {
+        height: 100%;
+      }
+    }
+    .chosenItemLabel {
+      // margin: 0px 33px;
+      margin: -4px 33px;
+      border-radius: 4px;
+      // opacity: 0.7;
+      background-color: #f0f2f7c8;
+      //   width: 400px;
+      // height: 50px;
+      color: #9ea0a5;
+      font-size: 28px;
+      text-align: center;
+      padding: 17px;
+      // vertical-align: middle;
+    }
+    .imageApproveCheckmark {
+      background-image: url();
+    }
+  }
+
+  .confirmedLabelWrapper {
+    height: 38px;
+    display: flex;
+    justify-content: flex-start;
+    .confirmedIcon {
+      width: 38px;
+      height: 38px;
+      border: solid 1px #69d697;
+      background-color: #ffffff;
+      border-radius: 19px;
+
+      .confirmedIconCheckMark {
+        color: #69d697;
+        font-size: 27px;
+        padding-left: 11px;
+      }
+    }
+    .confirmedLabel {
+      margin-left: 10px;
+      width: 101px;
+      font-family: 'Exo 2';
+      font-size: 22px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 40px;
+      letter-spacing: normal;
+      text-align: left;
+      color: #1b2c32;
+    }
+  }
+
+  .itemPropsTable {
+    width: $rightSideWidth;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 30px 0px;
+    // border: solid 1px #eaedf3;
+
+    box-shadow: 0px 10px 35px 0 rgba(0, 0, 0, 0.12);
+    background-color: #ffffff;
+    .itemPropsTableBody {
+      // border: solid 1px #eaedf3;
+      // width: 100%;
+      // height: 400px;
+      width: 566px;
+      // height: 263px;
+      // border-radius: 24px;
+      // border: solid 1px black;
+
+      .tableRow {
+        // border: 1px solid black;
+        height: 87px;
+        border-bottom: 1px solid #eaedf3bf;
+      }
+
+      .itemPropLabel {
+        // width: 200px;
+        // border: 1px solid black;
+        padding-left: 20px;
+        height: 19px;
+        font-family: 'Exo 2';
+        font-size: 22px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 0.68;
+        letter-spacing: normal;
+        text-align: left;
+        color: #838489;
+      }
+      .itemPropValue {
+        float: right;
+        // margin-right: 10px;
+        margin: 16px;
+        padding: 10px 0px 10px 40px;
+        border-radius: 4px;
+        border: 1px solid #eaedf3;
+        background-color: #f6f9fd;
+        color: #646466;
+        font-family: 'Exo 2';
+        font-size: 26px;
+        font-weight: 500;
+        min-width: 80px;
+      }
+    }
+  }
+  .actionButtonsWrapper {
+    width: $rightSideWidth;
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+
+    .cancelButton {
+      width: 205px;
+      // height: 65px;
+      text-align: center;
+      font-size: 22px;
+      padding: 20px 10px;
+      color: #6c6c6c;
+      font-weight: 600;
+      vertical-align: middle;
+      border-radius: 4px;
+      // line-height: 3;
+      box-shadow: inset 0px 2px 0 0 rgba(255, 255, 255, 0.06);
+      border: solid 1px #eaedf3;
+      background-image: linear-gradient(to bottom, #fdfdfd, #f6f6f6 99%);
+    }
+    .approveButton {
+      text-align: center;
+      color: white;
+      font-size: 22px;
+      // line-height: 3;
+      padding: 20px 10px;
+      width: 205px;
+      // height: 65px;
+      font-family: 'Exo 2';
+      font-weight: 600;
+      border-radius: 4px;
+      box-shadow: 0px 21px 50px 0 rgba(44, 160, 247, 0.25);
+      background-color: #2ca0f7;
+    }
+  }
+}

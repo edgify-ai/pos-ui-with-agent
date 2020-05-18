@@ -1,0 +1,55 @@
+.header {
+  background-color: #e7effb4a;
+  // width: 100%;
+  width: calc(100% - 45px);
+  height: 97px;
+  padding-left: 45px;
+
+
+  // border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  .logoImage {
+    height: 31px;
+    margin-top: 33px;
+  }
+
+  .headerSubLabel {
+    font-family: 'Exo 2';
+    font-size: 20px;
+    position: relative;
+    left: 10px;
+    top: -7px;
+  }
+
+  .returnButton {
+    padding: 6px 40px;
+    background-color: #2ca0f7;
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    left: 912px;
+    top: 30px;
+    position: absolute;
+    box-shadow: 0px 7px 20px 0 rgba(44, 160, 247, 0.2);
+    border-radius: 4px;
+  }
+}
+
+.headerNRF
+{
+  background-color: none;
+  height: 146px;
+  padding-left: 17px;
+  border-bottom: 1px solid #eee;
+
+  .logoImageNRF {
+    height: 112px;
+    margin-top: 18px;
+  }
+}
+
+.predictorVersion{
+  float:right;
+  padding-top:10px;
+  padding-right: 10px;
+  color:#AAA;
+}

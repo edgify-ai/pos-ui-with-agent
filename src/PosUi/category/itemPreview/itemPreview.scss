@@ -1,0 +1,32 @@
+.itemPreviewContainer {
+  margin: 13px 18px;
+  // padding: 0px 0px 0px 15px;
+  max-width: 135px;
+
+  a {
+    text-decoration: none;
+  }
+  .itemPreviewImage {
+    height: 135px;
+    border-radius: 4px;
+    box-shadow: 0px 5px 20px 0 rgba(0, 0, 0, 0.07);
+    border: solid 1px #eaedf3;
+    background-color: #ffffff;
+  }
+
+  .itemPreviewLabel {
+    height: 17px;
+    font-family: 'Exo 2';
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: center;
+    color: #838489;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

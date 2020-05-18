@@ -1,0 +1,42 @@
+.itemContainer {
+  // width: 25%;
+  height: 105px;
+  border-radius: 4px;
+  margin: 0px 4px 0px 4px;
+  display: inline-block;
+
+  .itemImage {
+    border: solid 1px #eaedf3;
+    border-bottom: 4px solid #b8e986;
+    // height: 120px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0px 4px 16px 0px rgba(189, 189, 189, 0.2);
+    -moz-box-shadow: 0px 4px 16px 0px rgba(189, 189, 189, 0.2);
+    box-shadow: 0px 4px 16px 0px rgba(189, 189, 189, 0.2);
+    // width: 100px;
+  }
+
+  .itemLabel {
+    font-family: 'Exo 2';
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    text-align: center;
+    color: #222;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .itemAccuracy {
+    font-size: 12px;
+    color: #838489;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
