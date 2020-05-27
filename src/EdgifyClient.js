@@ -5,7 +5,10 @@ import {
   GroundTruth,
 } from 'edgify-agent-api/prediction_pb';
 
-const client = new EdgifyServiceClient (process.env.REACT_APP_EDGIFY_SERVICE_URL);
+console.log ('GRPC URL is: ', process.env.REACT_APP_EDGIFY_SERVICE_URL);
+const client = new EdgifyServiceClient (
+  process.env.REACT_APP_EDGIFY_SERVICE_URL
+);
 
 export const makePrediction = () =>
   new Promise ((resolve, reject) => {
@@ -25,13 +28,13 @@ export const createGroundTruth = (label, prediction) => {
   gt.setPrediction (prediction);
   gt.setLabel (label);
   req.setGroundTruth (gt);
-  return new Promise((resolve, reject) => {
+  return new Promise ((resolve, reject) => {
     client.createGroundTruth (req, (err, resp) => {
       if (err) {
-        reject(err);
-      }else{
-        resolve()
+        reject (err);
+      } else {
+        resolve ();
       }
     });
-  })
+  });
 };
