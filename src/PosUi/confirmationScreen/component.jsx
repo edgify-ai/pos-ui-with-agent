@@ -113,7 +113,7 @@ export default ({
                   </Link>
                   <Link
                     to={'/'}
-                    onClick={() => addItemToReciept(label, rawPrediction)}
+                    onClick={() => addItemToReciept(gt, rawPrediction)}
                   >
                     <div className="approveButton">Print</div>
                   </Link>

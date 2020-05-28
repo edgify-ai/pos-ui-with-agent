@@ -50,7 +50,8 @@ const mapStateToProps = (state, ownProps) => {
       return {
         label,
         accuracy,
-        image: (allItems[label] && allItems[label].image) || ''
+        image: (allItems[label] && allItems[label].image) || '',
+        textLabel: (allItems[label] && allItems[label].label) || '',
       }
     }),
     noPredictedItems: topTotalAUC < getAccuracyThreshold (state),

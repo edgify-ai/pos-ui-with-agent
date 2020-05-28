@@ -8,9 +8,9 @@ import { getItemsByCategory } from '../../rootReducer';
 
 const mapStateToProps = (state, ownProps) => {
   const { category } = ownProps.match.params;
-  const categoryItems=getItemsByCategory(state)[category.toLowerCase()] || {};
+  const categoryItems=getItemsByCategory(state)[category] || {};
   Object.keys(categoryItems).forEach(key => {
-    categoryItems[key].key = key.toLowerCase()
+    categoryItems[key].key = key
   })
   return {
     items: categoryItems,
