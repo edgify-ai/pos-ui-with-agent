@@ -26,6 +26,7 @@ const Enhancer = compose(
     componentDidMount() {
       this.props.resetWeightValue();
       this.props.resetPrediction();
+      this.props.makePrediction();
     }
   })
 );
