@@ -7,14 +7,19 @@ import GroundTruthReducer, * as GroundTruth from './PosUi/groundTruth/reducer';
 import ItemsByCategoryReducer, * as ItemsByCategory
   from './PosUi/itemsByCategory/reducer';
 import ConfigReducer, * as Config from './PosUi/config/reducer';
+import CreateGroundTruthReducer, * as CreateGroundTruth from "./PosUi/confirmationScreen/reducer"
+import {reducer as toastrReducer} from 'react-redux-toastr'
+
 
 export default combineReducers ({
   categories: CategoriesReducer,
   weight: WeightReducer,
   prediction: PredictionReducer,
   groundTruth: GroundTruthReducer,
+  createGroundTruth: CreateGroundTruthReducer,
   itemsByCategory: ItemsByCategoryReducer,
   config: ConfigReducer,
+  toastr: toastrReducer
 });
 
 // SELECTORS
@@ -45,3 +50,6 @@ export const getMaxTopPredictions = ({config}) =>
   Config.getMaxTopPredictions (config);
 export const getAccuracyThreshold = ({config}) =>
   Config.getAccuracyThreshold (config);
+
+export const createGroundTruthIsLoading = ({createGroundTruth}) => CreateGroundTruth.isLoading(createGroundTruth)
+export const createGroundTruthHasError = ({createGroundTruth}) => CreateGroundTruth.hasError(createGroundTruth)

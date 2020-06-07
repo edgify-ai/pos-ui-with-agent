@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './item.scss';
 
-const Item = ({prediction: {label, accuracy, image}, selectItem}) => {
+const Item = ({prediction: {label, textLabel, accuracy, image}, selectItem}) => {
   const width='18%'
   const height='100px'
   return (
@@ -19,7 +19,7 @@ const Item = ({prediction: {label, accuracy, image}, selectItem}) => {
           alt={label}
           style={{height}}
         />
-        <div className="itemLabel">{label}</div>
+        <div className="itemLabel">{textLabel}</div>
         <div className="itemLabel itemAccuracy">
           {accuracy}
         </div>

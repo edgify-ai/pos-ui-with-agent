@@ -12,7 +12,7 @@ import {
 const mapStateToProps = state => {
   let weight = getWeight(state);
   const prediction = getPrediction(state);
-  const gt = getGroundTruth(state).toLowerCase();
+  const gt = getGroundTruth(state);
   const item = getItems(state)[gt]
   const price = item && item.price && '0.00'
 

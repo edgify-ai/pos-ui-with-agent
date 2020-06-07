@@ -8,12 +8,10 @@ const items = (() => {
   Object.keys (defaultState).forEach (category => {
     res = {...res, ...defaultState[category]};
   });
-  const downcaseKeysRes = {};
   Object.keys (res).forEach (key => {
-    downcaseKeysRes[key] = res[key];
-    downcaseKeysRes[key.toLowerCase ()] = res[key];
+    res[key].real_label = key;
   });
-  return downcaseKeysRes;
+  return res;
 }) ();
 
 export default (state = defaultState, action) => {
