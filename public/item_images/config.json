@@ -35,6 +35,11 @@
       "price": 0,
       "image": "/item_images/images_pub/Kiwi.png"
     },
+    "Mango": {
+      "label": "Mango",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-mango.png"
+    },
     "Orange": {
       "label": "Orange",
       "price": 0,
@@ -201,6 +206,11 @@
       "label": "Onion White",
       "price": 0,
       "image": "/item_images/images_pub/OnionWhite.png"
+    },
+    "Pumpkin": {
+      "label": "Pumpkin",
+      "price": 0,
+      "image": "/item_images/images_pub/nomodel-pumpkin.png"
     },
     "Potato": {
       "label": "Potato",
