@@ -12,6 +12,7 @@ import {
 import _ from 'lodash';
 
 const OTHER_FRUIT_LABEL = 'OtherFruit';
+const NO_FRUIT_LABEL = 'NoFruit';
 
 const mapStateToProps = (state, ownProps) => {
   let allPredictions = getPredictionItems (state);
@@ -26,21 +27,23 @@ const mapStateToProps = (state, ownProps) => {
 
   let topTotalAUC = 0;
 
-  if (allPredictions[0].dataList[0] !== OTHER_FRUIT_LABEL) {
-    allPredictions = allPredictions.filter (prediction => {
-      return prediction.dataList[0] !== OTHER_FRUIT_LABEL;
-    });
-  }
+  const unknownItem =
+    allPredictions &&
+    allPredictions[0] &&
+    allPredictions[0].dataList[0] === OTHER_FRUIT_LABEL;
+
+  const emptyScale = allPredictions &&
+    allPredictions[0] &&
+    allPredictions[0].dataList[0] === NO_FRUIT_LABEL;
+
+  allPredictions = allPredictions.filter (prediction => {
+    return [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL].indexOf(prediction.dataList[0]) === -1;
+  });
 
   const size = _.min([allPredictions.length, maxTopPredictions])
   for (let i = 0; i < size; ++i) {
     topTotalAUC = topTotalAUC + Number.parseFloat (allPredictions[i].dataList[1]);
   }
-
-  const unknownItem =
-    allPredictions &&
-    allPredictions[0] &&
-    allPredictions[0].dataList[0] === 'OtherFruit';
 
   const allItems = getItems(state)
   return {
@@ -54,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
         textLabel: (allItems[label] && allItems[label].label) || '',
       }
     }),
-    noPredictedItems: topTotalAUC < getAccuracyThreshold (state),
+    noPredictedItems: emptyScale || (topTotalAUC < getAccuracyThreshold (state)),
     unknownItem,
   };
 };
