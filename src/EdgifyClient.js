@@ -5,9 +5,14 @@ import {
   GroundTruth,
 } from 'edgify-agent-api/prediction_pb';
 
-console.log ('GRPC URL is: ', process.env.REACT_APP_EDGIFY_SERVICE_URL);
+const grpcPort = process.env.REACT_APP_EDGIFY_SERVICE_PORT
+const pageHostname = window.location.host.split(":")[0]
+const pageProtocol = window.location.protocol
+
+const grpcUrl =`${pageProtocol}\\\\${pageHostname}:${grpcPort}`
+
 const client = new EdgifyServiceClient (
-  process.env.REACT_APP_EDGIFY_SERVICE_URL
+  grpcUrl
 );
 
 export const makePrediction = () =>
