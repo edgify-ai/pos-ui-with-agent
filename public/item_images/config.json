@@ -95,11 +95,6 @@
       "price": 0,
       "image": "/item_images/images_pub/nomodel-lychee.png"
     },
-    "MangoNM": {
-      "label": "Mango",
-      "price": 0,
-      "image": "/item_images/images_pub/nomodel-mango.png"
-    },
     "MelonNM": {
       "label": "Melon",
       "price": 0,
@@ -311,11 +306,6 @@
       "label": "Parsley",
       "price": 0,
       "image": "/item_images/images_pub/nomodel-parsley.png"
-    },
-    "PumpkinNM": {
-      "label": "Pumpkin",
-      "price": 0,
-      "image": "/item_images/images_pub/nomodel-pumpkin.png"
     },
     "RadishNM": {
       "label": "Radish",
