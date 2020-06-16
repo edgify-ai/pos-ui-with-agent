@@ -1,23 +1,17 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
+import { Container, Grid, CardMedia, Card, TextField, Button } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
-
 import _ from "lodash"
 
 export default ({
-  currentImage, 
+  currentImages,
   items, 
   makePrediction, 
   setGroundTruth, 
-  addItemToReciept, 
+  addItemsToReciept,
   gt, 
-  rawPrediction,
+  rawPredictions,
   createGroundTruthHasError,
   createGroundTruthIsLoading,
 }) => (
@@ -29,21 +23,24 @@ export default ({
       if (key === 'shift') {
         makePrediction()
       }else if (key ==='space') {
-        addItemToReciept(gt, rawPrediction)
+        addItemsToReciept(gt, rawPredictions)
       }
     }} />
     <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <Card>
-          <CardMedia
-            // className={classes.cardMedia}
-            src={`data:image/jpeg;base64,${currentImage}`}
-            style={{height:"300px"}}
-            component={"img"}
-            title="Camera snapchot"
-          />
-        </Card>
-      </Grid>
+      {
+        currentImages.map(currentImage =>
+            <Grid item xs={4} key={currentImage}>
+              <Card>
+                <CardMedia
+                    src={`data:image/jpeg;base64,${currentImage}`}
+                    style={{height:"300px"}}
+                    component={"img"}
+                    title="Camera snapchot"
+                />
+              </Card>
+            </Grid>
+        )
+      }
       <Grid 
         item xs={4}
         container
@@ -70,7 +67,7 @@ export default ({
           variant="contained" 
           color="primary"
           disabled={createGroundTruthIsLoading || createGroundTruthHasError}
-          onClick={() => addItemToReciept(gt, rawPrediction)}>
+          onClick={() => addItemsToReciept(gt, rawPredictions)}>
           Upload (space)
         </Button>
         <Button 
@@ -81,5 +78,4 @@ export default ({
       </Grid>
   </Grid> 
   </Container>
-
 );

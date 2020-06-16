@@ -1,4 +1,4 @@
-import * as EdgifyClient from '../../EdgifyClient';
+import * as EdgifyClient from '../../EdgifyClients';
 export const GET_PREDICTION_LOADING = 'GET_PREDICTION_LOADING';
 export const GET_PREDICTION_SUCCESS = 'GET_PREDICTION_SUCCESS';
 export const GET_PREDICTION_FAILURE = 'GET_PREDICTION_FAILURE';
@@ -9,10 +9,16 @@ export const makePrediction = () => async dispatch => {
     type: GET_PREDICTION_LOADING,
   });
   try {
-    const prediction = await EdgifyClient.makePrediction ();
+    const predictions = (await EdgifyClient.makePredictions()).map(prediction => {
+      const raw = prediction.getPrediction ()
+      return {
+        json: raw.toObject (),
+        raw
+      }
+    });
     dispatch ({
       type: GET_PREDICTION_SUCCESS,
-      payload: prediction.getPrediction (),
+      payload: predictions,
     });
   } catch (e) {
     dispatch ({

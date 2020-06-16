@@ -29,13 +29,13 @@ export const getCategories = ({categories}) =>
 
 export const getWeight = ({weight}) => Weight.getWeight (weight);
 
-export const getPrediction = ({prediction}) =>
-  Prediction.getPrediction (prediction);
+export const getPredictions = ({prediction}) =>
+  Prediction.getPredictions (prediction);
 
-export const getPredictionResponse = ({prediction}) =>
-  Prediction.getOriginalResponse (prediction);
-export const getPredictionImage = ({prediction}) =>
-  Prediction.getCurrentImage (prediction);
+export const getRawPredictions = ({prediction}) =>
+  Prediction.getOriginalResponses (prediction);
+export const getPredictionImages = ({prediction}) =>
+  Prediction.getCurrentImages (prediction);
 export const getPredictionItems = ({prediction}) =>
   Prediction.getPredictionItems (prediction);
 
