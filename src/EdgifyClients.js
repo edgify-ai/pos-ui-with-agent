@@ -33,14 +33,14 @@ export const makePredictions = () =>
     ))
 
 export const createGroundTruth = (label, predictions) =>
-    Promise.all(predictions.map(prediction => {
+    Promise.all(predictions.map((prediction, i) => {
         const req = new GroundTruthRequest ()
         const gt = new GroundTruth ()
         gt.setPrediction (prediction)
         gt.setLabel (label)
         req.setGroundTruth (gt)
         return new Promise ((resolve, reject) => {
-            clients[0].createGroundTruth (req, (err, resp) => {
+            clients[i].createGroundTruth (req, (err, resp) => {
                 if (err) {
                     reject (err)
                 } else {
