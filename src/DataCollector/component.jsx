@@ -4,6 +4,8 @@ import { Autocomplete } from '@material-ui/lab';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
 import _ from "lodash"
 
+const buttonStyle = { backgroundColor: '#2ca0f7', color: 'white', height: "55px", textTransform: 'none' }
+
 export default ({
   currentImages,
   items, 
@@ -15,7 +17,7 @@ export default ({
   createGroundTruthHasError,
   createGroundTruthIsLoading,
 }) => (
-  <Container style={{marginTop: "30px"}} maxWidth="md">
+  <Container style={{marginTop: "50px"}} maxWidth="md">
     <KeyboardEventHandler
     handleKeys={['space', 'shift']}
     onKeyEvent={(key, e) => {
@@ -26,7 +28,38 @@ export default ({
         addItemsToReciept(gt, rawPredictions)
       }
     }} />
-    <Grid container spacing={3}>
+    <Grid container spacing={4} justify="center">
+      <Grid item>
+        <Autocomplete
+            id="labels"
+            onChange={(event, value) => setGroundTruth(value)}
+            options={_.uniqBy(Object.values(items), 'label')}
+            getOptionLabel={(option) => option.label || ''}
+            style={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+        />
+      </Grid>
+      <Grid item>
+        <Button
+            variant="contained"
+            disableElevation
+            style={buttonStyle}
+            onClick={makePrediction}>
+          Capture All (shift)
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button
+            variant="contained"
+            disableElevation
+            style={buttonStyle}
+            disabled={createGroundTruthIsLoading || createGroundTruthHasError}
+            onClick={() => addItemsToReciept(gt, rawPredictions)}>
+          Save All (space)
+        </Button>
+      </Grid>
+    </Grid>
+    <Grid container style={{marginTop: "30px"}} spacing={4} justify="space-around">
       {
         currentImages.map(currentImage =>
             <Grid item xs={4} key={currentImage}>
@@ -41,41 +74,6 @@ export default ({
             </Grid>
         )
       }
-      <Grid 
-        item xs={4}
-        container
-        direction="column"
-        justify="space-around"
-        alignItems="center">
-        <Autocomplete
-          id="labels"
-          onChange={(event, value) => setGroundTruth(value)}
-          options={_.uniqBy(Object.values(items), 'label')}
-          getOptionLabel={(option) => option.label || ''}
-          style={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-        />
-      </Grid>
-      <Grid 
-        item xs={4} 
-        container
-        direction="column"
-        justify="space-around"
-        alignItems="center"
-      >
-        <Button 
-          variant="contained" 
-          color="primary"
-          disabled={createGroundTruthIsLoading || createGroundTruthHasError}
-          onClick={() => addItemsToReciept(gt, rawPredictions)}>
-          Upload (space)
-        </Button>
-        <Button 
-          variant="contained"
-          onClick={makePrediction}>
-            Take a new picture (shift)
-        </Button>
-      </Grid>
-  </Grid> 
+    </Grid>
   </Container>
 );
