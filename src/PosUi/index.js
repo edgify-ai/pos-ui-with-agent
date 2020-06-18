@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import { lifecycle, compose } from 'recompose';
 import PosUI from './component';
-import {getPredictionImage} from '../rootReducer';
+import {getPredictionImages} from '../rootReducer';
 import {makePrediction,resetPrediction} from "./prediction/actions"
 import {setRandomWeightValue, resetWeightValue} from './weight/actions'
 
 
 const mapStateToProps = state => ({
-  currentImage: getPredictionImage (state),
+  currentImage: getPredictionImages(state)[0],
 });
 
 const mapDispatchToProps = (dispatch) => ({

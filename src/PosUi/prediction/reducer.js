@@ -6,7 +6,7 @@ import {
 } from './actions';
 
 const defaultState = {
-  data: {},
+  predictions: [],
   loading: false,
   error: false,
 };
@@ -28,27 +28,18 @@ export default (state = defaultState, action) => {
     case GET_PREDICTION_SUCCESS:
       return {
         ...state,
-        data: {
-          json: action.payload.toObject (),
-          raw: action.payload,
-        },
-        loading: true,
-        error: true,
+        predictions: action.payload,
+        loading: false,
+        error: false,
       };
-      case RESET_PREDICTION:
-        return {
-          ...state,
-          data: {},
-          loading: true,
-          error: true,
-        };
+    case RESET_PREDICTION:
+        return defaultState;
     default:
       return state;
   }
 };
 
-export const getPrediction = ({data}) => data;
-export const getOriginalResponse = ({data}) => data.raw;
-export const getCurrentImage = ({data}) => data.json && data.json.image.image;
-export const getPredictionItems = ({data}) =>
-  (data.json && data.json.predictionsList) || [];
+export const getPredictions = ({predictions}) => predictions;
+export const getOriginalResponses = ({predictions}) => predictions.map(({raw}) => raw);
+export const getCurrentImages = ({predictions}) => predictions.map(({json}) => json && json.image.image);
+export const getPredictionItems = ({predictions}) => predictions.map(({json}) => (json && json.predictionsList) || []);

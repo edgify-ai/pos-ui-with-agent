@@ -15,7 +15,7 @@ const OTHER_FRUIT_LABEL = 'OtherFruit';
 const NO_FRUIT_LABEL = 'NoFruit';
 
 const mapStateToProps = (state, ownProps) => {
-  let allPredictions = getPredictionItems (state);
+  let allPredictions = getPredictionItems(state)[0];
   if (_.isEmpty (allPredictions)) {
     return {
       unknownItem: false,

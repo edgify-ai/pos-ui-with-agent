@@ -1,17 +1,17 @@
 // @flow
 import { connect } from 'react-redux';
 import ChosenItem from './component';
-import { addItemToReciept } from './actions';
+import { addItemsToReciept } from './actions';
 import {
   getWeight,
-  getPrediction,
+  getRawPredictions,
   getGroundTruth,
   getItems,
 } from '../../rootReducer';
 
 const mapStateToProps = state => {
   let weight = getWeight(state);
-  const prediction = getPrediction(state);
+  const rawPredictions = getRawPredictions(state);
   const gt = getGroundTruth(state);
   const item = getItems(state)[gt]
   const price = item && item.price && '0.00'
@@ -22,13 +22,13 @@ const mapStateToProps = state => {
     gt,
     image:item.image,
     price,
-    rawPrediction: prediction.raw
+    rawPredictions
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   addItemToReciept: (gt, rawPrediction) =>
-    dispatch(addItemToReciept(gt, rawPrediction))
+    dispatch(addItemsToReciept(gt, rawPrediction))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChosenItem);
