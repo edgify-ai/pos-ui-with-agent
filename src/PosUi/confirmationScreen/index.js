@@ -11,7 +11,7 @@ import {
 
 const mapStateToProps = state => {
   let weight = getWeight(state);
-  const rawPredictions = getRawPredictions(state);
+  const rawPrediction = getRawPredictions(state)[0];
   const gt = getGroundTruth(state);
   const item = getItems(state)[gt]
   const price = item && item.price && '0.00'
@@ -22,13 +22,13 @@ const mapStateToProps = state => {
     gt,
     image:item.image,
     price,
-    rawPredictions
+    rawPrediction
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   addItemToReciept: (gt, rawPrediction) =>
-    dispatch(addItemsToReciept(gt, rawPrediction))
+    dispatch(addItemsToReciept(gt, [rawPrediction]))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChosenItem);
