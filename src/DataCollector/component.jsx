@@ -1,23 +1,31 @@
 import React from 'react';
-import { Container, Grid, CardMedia, Card, TextField, Button } from '@material-ui/core';
+import { Container, Grid, TextField, Button } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
+import {makeStyles} from "@material-ui/core/styles";
+import Camera from './camera'
 import _ from "lodash";
 import { useDataCollectorEffects } from './hooks';
 
-const buttonStyle = { backgroundColor: '#2ca0f7', color: 'white', height: "55px", textTransform: 'none', fontFamily: 'Exo 2' }
+const useStyles = makeStyles({
+  button: { backgroundColor: '#2ca0f7', color: 'white', height: "55px", textTransform: 'none', fontFamily: 'Exo 2' }
+})
 
 export default ({
-  currentImages,
   items, 
   makePrediction, 
   setGroundTruth, 
   addItemsToReciept,
   gt,
-  rawPredictions,
+  predictions,
   createGroundTruthHasError,
   createGroundTruthIsLoading,
 }) => {
-  useDataCollectorEffects(makePrediction, addItemsToReciept, createGroundTruthHasError, createGroundTruthIsLoading, gt, rawPredictions)
+  const classes = useStyles();
+  useDataCollectorEffects(makePrediction, addItemsToReciept, createGroundTruthHasError, createGroundTruthIsLoading, gt, predictions)
+  const onCaptureAll = event => {
+    event.preventDefault()
+    makePrediction()
+  }
   return (
     <Container style={{marginTop: "50px"}} maxWidth="md">
       <Grid container spacing={4} justify="center">
@@ -35,8 +43,8 @@ export default ({
           <Button
             variant="contained"
             disableElevation
-            style={buttonStyle}
-            onClick={makePrediction}
+            className={classes.button}
+            onClick={onCaptureAll}
           >
             Capture All (shift)
           </Button>
@@ -45,9 +53,9 @@ export default ({
           <Button
             variant="contained"
             disableElevation
-            style={buttonStyle}
+            className={classes.button}
             disabled={createGroundTruthIsLoading || createGroundTruthHasError}
-            onClick={() => addItemsToReciept(gt, rawPredictions)}
+            onClick={() => addItemsToReciept(gt, predictions)}
           >
             Save All (space)
           </Button>
@@ -55,17 +63,19 @@ export default ({
       </Grid>
       <Grid container style={{marginTop: "30px"}} spacing={4} justify="space-around">
         {
-          currentImages.map((currentImage, i) =>
-            <Grid item xs={4} key={currentImage + i}>
-              <Card>
-                <CardMedia
-                  src={`data:image/jpeg;base64,${currentImage}`}
-                  style={{height: "300px"}}
-                  component={"img"}
-                />
-              </Card>
-            </Grid>
-          )
+          predictions.map(({ json, port, raw }) => {
+            const image = json?.image.image
+            const captureImage = () => makePrediction(port)
+            const onSave = () => addItemsToReciept(gt, [{ raw, port }])
+            return (
+              <Camera
+                key={image + port}
+                image={image}
+                port={port}
+                captureImage={captureImage}
+                onSave={onSave}
+              />)
+          })
         }
       </Grid>
     </Container>

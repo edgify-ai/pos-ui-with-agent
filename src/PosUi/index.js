@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 import { lifecycle, compose } from 'recompose';
 import PosUI from './component';
 import {getPredictionImages} from '../rootReducer';
-import {makePrediction,resetPrediction} from "./prediction/actions"
+import {makePredictions,resetPrediction} from "./prediction/actions"
 import {setRandomWeightValue, resetWeightValue} from './weight/actions'
 
 
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   makePrediction: () => {
-    dispatch(makePrediction())
+    dispatch(makePredictions())
     dispatch(setRandomWeightValue())
   },
   resetWeightValue: () => dispatch(resetWeightValue()),

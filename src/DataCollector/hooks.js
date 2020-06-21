@@ -1,7 +1,7 @@
 import {useEffect, useRef} from "react";
 import {toastr} from "react-redux-toastr";
 
-export const useDataCollectorEffects = (makePrediction, addItemsToReciept, createGroundTruthHasError, createGroundTruthIsLoading, gt, rawPredictions) => {
+export const useDataCollectorEffects = (makePrediction, addItemsToReciept, createGroundTruthHasError, createGroundTruthIsLoading, gt, predictions) => {
   const prevGroundTruthIsLoading = useRef(false)
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const useDataCollectorEffects = (makePrediction, addItemsToReciept, creat
           makePrediction()
           break
         case 32:
-          addItemsToReciept(gt, rawPredictions)
+          addItemsToReciept(gt, predictions)
           break
         default:
           return
@@ -33,5 +33,5 @@ export const useDataCollectorEffects = (makePrediction, addItemsToReciept, creat
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [makePrediction, addItemsToReciept, gt, rawPredictions])
+  }, [makePrediction, addItemsToReciept, gt, predictions])
 }
