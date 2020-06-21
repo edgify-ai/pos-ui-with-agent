@@ -33,8 +33,11 @@ export default (state = defaultState, action) => {
         error: false,
       };
     case GET_PREDICTION_SUCCESS:
+      const predictions = state.predictions.length
+        ? state.predictions.map(prediction => prediction.port === action.payload.port ? action.payload : prediction)
+        : [action.payload]
       return {
-        predictions: state.predictions.map(prediction => prediction.port === action.payload.port ? action.payload : prediction),
+        predictions,
         loading: false,
         error: false,
       };

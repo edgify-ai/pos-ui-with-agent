@@ -1,20 +1,21 @@
 // @flow
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { lifecycle, compose } from 'recompose';
 import PosUI from './component';
-import {getPredictionImages} from '../rootReducer';
-import {makePredictions,resetPrediction} from "./prediction/actions"
-import {setRandomWeightValue, resetWeightValue} from './weight/actions'
+import { getPredictionImages } from '../rootReducer';
+import { makePredictions, resetPrediction } from "./prediction/actions"
+import { setRandomWeightValue, resetWeightValue } from './weight/actions'
+import { defaultPort } from '../EdgifyClients'
 
 
 const mapStateToProps = state => ({
-  currentImage: getPredictionImages(state)[0],
-});
+  currentImage: getPredictionImages(state)[0]
+})
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   makePrediction: () => {
-    dispatch(makePredictions())
+    dispatch(makePredictions(defaultPort))
     dispatch(setRandomWeightValue())
   },
   resetWeightValue: () => dispatch(resetWeightValue()),

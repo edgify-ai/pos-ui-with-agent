@@ -11,10 +11,10 @@ const getGRPCUrl = port => {
     return `${pageProtocol}\\\\${pageHostname}:${port}`
 }
 
-const request = new XMLHttpRequest ();
-request.open ('GET', '/clients/config.json', false);
-request.send (null);
-const { ports } = JSON.parse (request.response);
+const request = new XMLHttpRequest ()
+request.open ('GET', '/clients/config.json', false)
+request.send (null)
+const { ports } = JSON.parse (request.response)
 
 const clients = ports.map(port => new EdgifyServiceClient(getGRPCUrl(port)))
 
@@ -31,6 +31,9 @@ const makePredictionInClient = (client, port) => new Promise ((resolve, reject) 
     }
   })
 })
+
+export const defaultPort = ports[0]
+
 const getClientByPort = port => clients[ports.findIndex(clientPort => clientPort === port)]
 
 export const makePrediction = port => makePredictionInClient(getClientByPort(port), port)
@@ -38,20 +41,20 @@ export const makePrediction = port => makePredictionInClient(getClientByPort(por
 export const makePredictions = () => Promise.all(clients.map((client, i) => makePredictionInClient(client, ports[i])))
 
 export const createGroundTruth = (label, predictions) =>
-    Promise.all(predictions.map(({ raw, port }) => {
-        const req = new GroundTruthRequest ()
-        const gt = new GroundTruth ()
-        const client = getClientByPort(port)
-        gt.setPrediction (raw)
-        gt.setLabel (label)
-        req.setGroundTruth (gt)
-        return new Promise ((resolve, reject) => {
-          client.createGroundTruth (req, (err, resp) => {
-                if (err) {
-                    reject (err)
-                } else {
-                    resolve ()
-                }
-            })
-        })
-    }))
+  Promise.all(predictions.map(({ raw, port }) => {
+    const req = new GroundTruthRequest ()
+    const gt = new GroundTruth ()
+    const client = getClientByPort(port)
+    gt.setPrediction (raw)
+    gt.setLabel (label)
+    req.setGroundTruth (gt)
+    return new Promise ((resolve, reject) => {
+      client.createGroundTruth (req, (err, resp) => {
+        if (err) {
+          reject (err)
+        } else {
+          resolve ()
+        }
+      })
+    })
+  }))
