@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import ItemPreview from './itemPreview/';
+import ItemPreview from './itemPreview';
 import Header from '../header';
 import './items.scss';
 
@@ -9,25 +9,28 @@ const renderItems = (items, category, setGroundTruth) => {
   let start = 0;
   const parts = [];
   const interval = 6;
-  items = Object.values(items)
-  while (start < items.length) {
-    const slice = items.slice(start, start + interval);
+  const itemsValues = Object.values(items);
+  while (start < itemsValues.length) {
+    const slice = itemsValues.slice(start, start + interval);
 
     parts.push(slice);
     start += interval;
   }
-  return parts.map(part => (
+  return parts.map((part) => (
     <tr key={Math.floor(Math.random() * 100)}>
-      {part.map(item => (
+      {part.map((item) => (
         <td key={item.label}>
-          <ItemPreview item={item} setGroundTruth={() => setGroundTruth(item.key)}/>
+          <ItemPreview
+            item={item}
+            setGroundTruth={() => setGroundTruth(item.key)}
+          />
         </td>
       ))}
     </tr>
   ));
 };
 
-const Items = ({ items, category, setGroundTruth }: Props) => {
+const Items = ({ items, category, setGroundTruth }) => {
   return (
     <div className="ItemsComponent">
       <div>
@@ -36,9 +39,7 @@ const Items = ({ items, category, setGroundTruth }: Props) => {
       <div className="categoryName">{category}</div>
       <div className="ItemsSubtitle">Select the correct item:</div>
       <table cellPadding="0" className="itemsComponentTable">
-        <tbody>
-          {renderItems(items, category, setGroundTruth)}
-        </tbody>
+        <tbody>{renderItems(items, category, setGroundTruth)}</tbody>
       </table>
     </div>
   );

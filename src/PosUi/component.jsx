@@ -3,13 +3,13 @@ import React from 'react';
 import Header from './header';
 import Weight from './weight';
 import ItemSelection from './itemSelection';
-import './pos_ui.scss';
-import Categories from './categories/';
+import Categories from './categories';
 import ItemPhoto from './ItemPhoto';
+import './pos_ui.scss';
 
-type Props = {match: Match};
+type Props = {};
 
-export default ({match, currentImage,makePrediction}: Props) => (
+export default ({ match, currentImage, makePrediction }: Props) => (
   <div>
     <div>
       <Header />
@@ -30,7 +30,7 @@ export default ({match, currentImage,makePrediction}: Props) => (
                   </tr>
                   <tr>
                     <td className="topWeightContainer">
-                      <Weight onClickHandler={makePrediction}/>
+                      <Weight onClickHandler={makePrediction} />
                     </td>
                   </tr>
                 </tbody>
@@ -41,12 +41,12 @@ export default ({match, currentImage,makePrediction}: Props) => (
                 <tbody>
                   <tr>
                     <td>
-                      <ItemSelection match={match}/>
+                      <ItemSelection match={match} />
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <Categories/>
+                      <Categories />
                     </td>
                   </tr>
                 </tbody>

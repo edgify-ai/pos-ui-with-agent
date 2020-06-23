@@ -15,14 +15,8 @@ const renderPredictedItems = (predictions, selectItem) => (
   <div className="predictedItemsOuterContainer">
     <div className="sectionTitle">Select the correct item:</div>
     <div className="predictedItemsContainer">
-      {predictions.map ((p) => {
-        return (
-          <Item
-            key={p.label}
-            prediction={p}
-            selectItem={selectItem}
-          />
-        );
+      {predictions.map((p) => {
+        return <Item key={p.label} prediction={p} selectItem={selectItem} />;
       })}
     </div>
   </div>
@@ -35,12 +29,12 @@ const ItemSelection = ({
   selectItem,
 }) => {
   if (unknownItem) {
-    return renderNoPredictedItems ('UNKNOWN ITEM, PLEASE SELECT FROM MENU');
+    return renderNoPredictedItems('UNKNOWN ITEM, PLEASE SELECT FROM MENU');
   }
   if (noPredictedItems) {
-    return renderNoPredictedItems ();
+    return renderNoPredictedItems();
   }
-  return renderPredictedItems (predictions, selectItem);
+  return renderPredictedItems(predictions, selectItem);
 };
 
 export default ItemSelection;

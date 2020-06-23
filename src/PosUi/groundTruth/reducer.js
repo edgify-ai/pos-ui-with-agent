@@ -1,4 +1,4 @@
-import {SET_GROUND_TRUTH} from './actions';
+import { SET_GROUND_TRUTH } from './actions';
 
 const defaultState = {
   data: '',
@@ -16,4 +16,4 @@ export default (state = defaultState, action) => {
   }
 };
 
-export const getGroudTruth = ({data}) => data;
+export const getGroudTruth = ({ data }) => data;

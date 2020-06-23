@@ -1,8 +1,8 @@
 import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
-import ReduxToastr from 'react-redux-toastr'
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import ReduxToastr from 'react-redux-toastr';
 
 import store from './config/store';
 import './App.css';
@@ -20,7 +20,6 @@ export default () => (
         <Route path="/category/:category" component={Category} />
         <Route path="/confirmation" component={ConfirmationScreen} />
         <Route path="/data-collector" component={DataCollectionScreen} />
-
       </Switch>
     </HashRouter>
     <ReduxToastr
@@ -32,6 +31,7 @@ export default () => (
       transitionIn="fadeIn"
       transitionOut="fadeOut"
       progressBar
-      closeOnToastrClick/>
+      closeOnToastrClick
+    />
   </Provider>
 );

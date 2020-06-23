@@ -6,16 +6,18 @@ type Props = {
   currentImage: string,
 };
 
-export default ({currentImage}: Props) => (
+export default ({ currentImage }: Props) => (
   <div>
     <div className="cameraPlaceholder">
-      {currentImage
-        ? <img
-            className="scannedItemImage"
-            src={`data:image/jpeg;base64,${currentImage}`}
-            alt="scanned item"
-          />
-        : 'There is no image'}
+      {currentImage ? (
+        <img
+          className="scannedItemImage"
+          src={`data:image/jpeg;base64,${currentImage}`}
+          alt="scanned item"
+        />
+      ) : (
+        'There is no image'
+      )}
     </div>
   </div>
 );
