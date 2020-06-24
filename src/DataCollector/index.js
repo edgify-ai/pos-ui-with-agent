@@ -1,4 +1,3 @@
-// @flow
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Component from './component';

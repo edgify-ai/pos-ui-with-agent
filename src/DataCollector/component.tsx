@@ -3,8 +3,19 @@ import { Container, Grid, TextField, Button } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import _ from 'lodash';
-import Camera from './camera';
+import Cameras from './components/Cameras';
 import useDataCollectorEffects from './hooks';
+
+type Props = {
+  items: any[];
+  makePrediction: (...args: any[]) => any;
+  setGroundTruth: (...args: any[]) => any;
+  addItemsToReciept: (...args: any[]) => any;
+  gt: Object;
+  predictions: any[];
+  createGroundTruthHasError: boolean;
+  createGroundTruthIsLoading: boolean;
+};
 
 const useStyles = makeStyles({
   button: {
@@ -16,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({
+const DataCollector: React.FC<Props> = ({
   items,
   makePrediction,
   setGroundTruth,
@@ -35,7 +46,7 @@ export default ({
     gt,
     predictions
   );
-  const onCaptureAll = (event) => {
+  const onCaptureAll = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     makePrediction();
   };
@@ -76,27 +87,14 @@ export default ({
           </Button>
         </Grid>
       </Grid>
-      <Grid
-        container
-        style={{ marginTop: '30px' }}
-        spacing={4}
-        justify="space-around"
-      >
-        {predictions.map(({ json, port, raw }) => {
-          const image = json?.image.image;
-          const captureImage = () => makePrediction(port);
-          const onSave = () => addItemsToReciept(gt, [{ raw, port }]);
-          return (
-            <Camera
-              key={image + port}
-              image={image}
-              port={port}
-              captureImage={captureImage}
-              onSave={onSave}
-            />
-          );
-        })}
-      </Grid>
+      <Cameras
+        predictions={predictions}
+        makePrediction={makePrediction}
+        addItemsToReciept={addItemsToReciept}
+        gt={gt}
+      />
     </Container>
   );
 };
+
+export default DataCollector;

@@ -7,9 +7,7 @@ import Categories from './categories';
 import ItemPhoto from './ItemPhoto';
 import './pos_ui.scss';
 
-type Props = {};
-
-export default ({ match, currentImage, makePrediction }: Props) => (
+export default ({ match, currentImage, makePrediction }) => (
   <div>
     <div>
       <Header />

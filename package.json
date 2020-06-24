@@ -9,6 +9,14 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^26.0.0",
+    "@types/lodash": "^4.14.156",
+    "@types/node": "^14.0.13",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-redux-toastr": "^7.6.0",
+    "@types/react-router-dom": "^5.1.5",
     "edgify-agent-api": "github:edgify-ai/edgify-agent-sdk-js",
     "google-protobuf": "^3.11.4",
     "history": "^5.0.0",
@@ -26,15 +34,16 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "typescript": "^3.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js --ext .jsx",
-    "lint:fix": "eslint src --ext .js --ext .jsx --fix"
+    "lint": "eslint src --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "lint:fix": "eslint src --ext .js --ext .jsx --ext .ts --ext .tsx --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -69,6 +78,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": ["npm run lint:fix", "git add"]
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "git add"
+    ]
   }
 }

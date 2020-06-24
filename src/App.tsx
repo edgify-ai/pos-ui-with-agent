@@ -10,7 +10,7 @@ import './App.css';
 import PosUI from './PosUi';
 import Category from './PosUi/category';
 import ConfirmationScreen from './PosUi/confirmationScreen';
-import DataCollectionScreen from './DataCollector';
+import DataCollectionScreen from './DataCollector/index';
 
 export default () => (
   <Provider store={store}>
@@ -27,7 +27,6 @@ export default () => (
       newestOnTop={false}
       preventDuplicates
       position="top-left"
-      getState={(state) => state.toastr} // This is the default
       transitionIn="fadeIn"
       transitionOut="fadeOut"
       progressBar

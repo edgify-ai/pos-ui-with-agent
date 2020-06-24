@@ -16,4 +16,4 @@ export default (state = defaultState, action) => {
   }
 };
 
-export const getGroudTruth = ({ data }) => data;
+export const getGroundTruth = ({ data }) => data;

@@ -38,7 +38,7 @@ export const getPredictionItems = ({ prediction }) =>
   Prediction.getPredictionItems(prediction);
 
 export const getGroundTruth = ({ groundTruth }) =>
-  GroundTruth.getGroudTruth(groundTruth);
+  GroundTruth.getGroundTruth(groundTruth);
 
 export const getItemsByCategory = ({ itemsByCategory }) =>
   ItemsByCategory.getItemsByCategory(itemsByCategory);

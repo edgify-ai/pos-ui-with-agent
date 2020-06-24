@@ -2,11 +2,7 @@
 import React from 'react';
 import './scannedImage.scss';
 
-type Props = {
-  currentImage: string,
-};
-
-export default ({ currentImage }: Props) => (
+export default ({ currentImage }) => (
   <div>
     <div className="cameraPlaceholder">
       {currentImage ? (
