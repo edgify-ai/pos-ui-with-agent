@@ -2,17 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './itemPreview.scss';
 
-const ItemPreview = ({
-  item,
-  setGroundTruth
-}) => {
+const ItemPreview = ({ item, setGroundTruth }) => {
   return (
     <div className="itemPreviewContainer">
       <Link
-        id={item.label + '_button'}
-        to={'/confirmation'}
+        id={`${item.label}_button`}
+        to="/confirmation"
         onClick={() => {
-          setGroundTruth()
+          setGroundTruth();
         }}
       >
         <img className="itemPreviewImage" src={item.image} alt={item.label} />

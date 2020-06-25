@@ -3,7 +3,7 @@ import {
   GET_PREDICTIONS_SUCCESS,
   GET_PREDICTION_SUCCESS,
   GET_PREDICTION_FAILURE,
-  RESET_PREDICTION
+  RESET_PREDICTION,
 } from './actions';
 
 const defaultState = {
@@ -33,22 +33,28 @@ export default (state = defaultState, action) => {
         error: false,
       };
     case GET_PREDICTION_SUCCESS:
-      const predictions = state.predictions.length
-        ? state.predictions.map(prediction => prediction.port === action.payload.port ? action.payload : prediction)
-        : [action.payload]
       return {
-        predictions,
         loading: false,
         error: false,
+        predictions: state.predictions.length
+          ? state.predictions.map((prediction) =>
+              prediction.port === action.payload.port
+                ? action.payload
+                : prediction
+            )
+          : [action.payload],
       };
     case RESET_PREDICTION:
-        return defaultState;
+      return defaultState;
     default:
       return state;
   }
 };
 
-export const getPredictions = ({predictions}) => predictions
-export const getOriginalResponses = ({predictions}) => predictions.map(({raw}) => raw);
-export const getCurrentImages = ({predictions}) => predictions.map(({json}) => json?.image.image);
-export const getPredictionItems = ({predictions}) => predictions.map(({json}) => (json?.predictionsList) || []);
+export const getPredictions = ({ predictions }) => predictions;
+export const getOriginalResponses = ({ predictions }) =>
+  predictions.map(({ raw }) => raw);
+export const getCurrentImages = ({ predictions }) =>
+  predictions.map(({ json }) => json?.image.image);
+export const getPredictionItems = ({ predictions }) =>
+  predictions.map(({ json }) => json?.predictionsList || []);

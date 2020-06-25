@@ -9,26 +9,26 @@ import {
   getItems,
 } from '../../rootReducer';
 
-const mapStateToProps = state => {
-  let weight = getWeight(state);
+const mapStateToProps = (state) => {
+  const weight = getWeight(state);
   const prediction = getPredictions(state)[0];
   const gt = getGroundTruth(state);
-  const item = getItems(state)[gt]
-  const price = item && item.price && '0.00'
+  const item = getItems(state)[gt];
+  const price = item && item.price && '0.00';
 
   return {
     weight,
-    label:item.label,
+    label: item.label,
     gt,
-    image:item.image,
+    image: item.image,
     price,
-    prediction
+    prediction,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addItemToReciept: (gt, prediction) =>
-    dispatch(addItemsToReciept(gt, [prediction]))
+    dispatch(addItemsToReciept(gt, [prediction])),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChosenItem);

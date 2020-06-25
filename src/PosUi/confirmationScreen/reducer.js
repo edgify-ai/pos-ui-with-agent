@@ -1,8 +1,8 @@
 import {
-  CREATE_GROUND_TRUE_LOADING, 
-  CREATE_GROUND_TRUE_SUCCESS, 
+  CREATE_GROUND_TRUE_LOADING,
+  CREATE_GROUND_TRUE_SUCCESS,
   CREATE_GROUND_TRUE_FAILURE,
-  CREATE_GROUND_TRUTH_RESTORE_DEFAULT
+  CREATE_GROUND_TRUTH_RESTORE_DEFAULT,
 } from './actions';
 
 const defaultState = {
@@ -24,22 +24,22 @@ export default (state = defaultState, action) => {
         loading: true,
         error: false,
       };
-      case CREATE_GROUND_TRUE_SUCCESS:
-        return {
-          ...state,
-          loading: false,
-          error: false,
-        };
-        case CREATE_GROUND_TRUE_FAILURE:
-          return {
-            ...state,
-            loading: false,
-            error: true,
-          };
+    case CREATE_GROUND_TRUE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: false,
+      };
+    case CREATE_GROUND_TRUE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+      };
     default:
       return state;
   }
 };
 
-export const isLoading = ({loading}) => loading;
-export const hasError = ({error}) => error;
+export const isLoading = ({ loading }) => loading;
+export const hasError = ({ error }) => error;

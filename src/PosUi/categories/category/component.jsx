@@ -1,28 +1,28 @@
 // @flow
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './category.scss';
 
-const renderCategory = props => {
-  if (!props) {
+const renderCategory = ({ name, style }) => {
+  if (!name && !style) {
     return <div />;
   }
-  if (props && props.style && props.style === 'moreOptions') {
+  if (style === 'moreOptions') {
     return <div className="moreOptions" />;
   }
 
   return (
     <div>
-      <Link to={`/category/${props.name}`}>
-        <div className={`categoryImage-${props.name}`} />
-        <div className="categoryLabel">{props.name}</div>
+      <Link to={`/category/${name}`}>
+        <div className={`categoryImage-${name}`} />
+        <div className="categoryLabel">{name}</div>
       </Link>
     </div>
   );
 };
 
-const Category = ({props}: Props) => {
-  return <div className={`categoryItem`}>{renderCategory (props)}</div>;
+const Category = ({ props }) => {
+  return <div className="categoryItem">{renderCategory(props)}</div>;
 };
 
 export default Category;

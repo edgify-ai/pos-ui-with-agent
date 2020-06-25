@@ -4,23 +4,22 @@ import { withRouter } from 'react-router';
 import { lifecycle, compose } from 'recompose';
 import PosUI from './component';
 import { getPredictionImages } from '../rootReducer';
-import { makePredictions, resetPrediction } from "./prediction/actions"
-import { setRandomWeightValue, resetWeightValue } from './weight/actions'
-import { defaultPort } from '../EdgifyClients'
+import { makePredictions, resetPrediction } from './prediction/actions';
+import { setRandomWeightValue, resetWeightValue } from './weight/actions';
+import { defaultPort } from '../EdgifyClients';
 
+const mapStateToProps = (state) => ({
+  currentImage: getPredictionImages(state)[0],
+});
 
-const mapStateToProps = state => ({
-  currentImage: getPredictionImages(state)[0]
-})
-
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   makePrediction: () => {
-    dispatch(makePredictions(defaultPort))
-    dispatch(setRandomWeightValue())
+    dispatch(makePredictions(defaultPort));
+    dispatch(setRandomWeightValue());
   },
   resetWeightValue: () => dispatch(resetWeightValue()),
-  resetPrediction: () => dispatch(resetPrediction())
-})
+  resetPrediction: () => dispatch(resetPrediction()),
+});
 
 const Enhancer = compose(
   lifecycle({
@@ -28,10 +27,12 @@ const Enhancer = compose(
       this.props.resetWeightValue();
       this.props.resetPrediction();
       this.props.makePrediction();
-    }
+    },
   })
 );
 const EnhancedComponent = Enhancer(PosUI);
 
-const ConnectedComponent = withRouter (connect (mapStateToProps, mapDispatchToProps) (EnhancedComponent));
+const ConnectedComponent = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(EnhancedComponent)
+);
 export default ConnectedComponent;

@@ -1,9 +1,11 @@
 import React from 'react';
 import './weight.scss';
 
-const Weight = ({weight, onClickHandler}) => (
+const Weight = ({ weight, onClickHandler }) => (
   <div className="weightContainer">
     <div
+      role="button"
+      tabIndex={0}
       className={
         weight > 0 ? 'weightScaleContainer active' : 'weightScaleContainer'
       }

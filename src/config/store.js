@@ -8,5 +8,8 @@ import rootReducer from '../rootReducer';
 const middlewares = [thunk, logger];
 // const middlewares = [logger];
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middlewares))
+);
 export default store;

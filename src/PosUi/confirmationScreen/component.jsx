@@ -14,34 +14,28 @@ const itemPropsTable = (weight, price) => {
       <tbody className="itemPropsTableBody">
         <tr className="tableRow">
           <td className="itemPropLabel">
-            <label>Weight (kg)</label>
+            <p>Weight (kg)</p>
           </td>
           <td className="itemPropValue">
-            <label>{weight ? parseFloat(weight).toFixed(2) : '0.00'}</label>
+            <div>{weight ? parseFloat(weight).toFixed(2) : '0.00'}</div>
           </td>
         </tr>
         <tr className="tableRow">
           <td className="itemPropLabel">
-            <label>Unit Price ($/kg)</label>
+            <p>Unit Price ($/kg)</p>
           </td>
           <td className="itemPropValue">
-            <label>
-              {price
-                ? parseFloat(price).toFixed(2)
-                : '0.00'}{' '}
-            </label>
+            <div>{price ? parseFloat(price).toFixed(2) : '0.00'}</div>
           </td>
         </tr>
         <tr className="tableRow rowSeparator">
           <td className="itemPropLabel">
-            <label>Total Price</label>
+            <p>Total Price</p>
           </td>
           <td className="itemPropValue">
-            <label>
-              {weight && price
-                ? calculatePrice(weight, price)
-                : '0.00'}
-            </label>
+            <div>
+              {weight && price ? calculatePrice(weight, price) : '0.00'}
+            </div>
           </td>
         </tr>
       </tbody>
@@ -57,7 +51,7 @@ export default ({
   price,
   addItemToReciept,
   prediction,
-}: Props) => {
+}) => {
   return (
     <div>
       <div>
@@ -91,9 +85,7 @@ export default ({
                     </tr>
                     <tr>
                       <td className="itemImageAndLabelProps">
-                        <div className="chosenItemLabel">
-                          {label}
-                        </div>
+                        <div className="chosenItemLabel">{label}</div>
                       </td>
                     </tr>
                   </tbody>
@@ -108,13 +100,10 @@ export default ({
                 </div>
                 {itemPropsTable(weight, price)}
                 <div className="actionButtonsWrapper">
-                  <Link to={'/'}>
+                  <Link to="/">
                     <div className="cancelButton">Cancel</div>
                   </Link>
-                  <Link
-                    to={'/'}
-                    onClick={() => addItemToReciept(gt, prediction)}
-                  >
+                  <Link to="/" onClick={() => addItemToReciept(gt, prediction)}>
                     <div className="approveButton">Print</div>
                   </Link>
                 </div>

@@ -1,4 +1,4 @@
-import {SET_WEIGHT} from './actions';
+import { SET_WEIGHT } from './actions';
 
 const defaultState = {
   data: 0,
@@ -16,4 +16,4 @@ export default (state = defaultState, action) => {
   }
 };
 
-export const getWeight = ({data}) => data;
+export const getWeight = ({ data }) => data;

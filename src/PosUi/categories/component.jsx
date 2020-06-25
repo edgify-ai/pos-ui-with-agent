@@ -3,7 +3,7 @@ import React from 'react';
 import Category from './category';
 import './categories.scss';
 
-const renderRow = (categories, rowIndex, queryParams) => {
+const renderRow = (categories, rowIndex) => {
   let i = 0;
   if (rowIndex === 1) {
     i = 3;
@@ -24,12 +24,12 @@ const renderRow = (categories, rowIndex, queryParams) => {
   );
 };
 
-const Categories = ({categories, location}: Props) => (
+const Categories = ({ categories }) => (
   <div className="categoriesContainer">
     <table cellPadding="0">
       <tbody>
-        {renderRow (categories, 0)}
-        {renderRow (categories, 1)}
+        {renderRow(categories, 0)}
+        {renderRow(categories, 1)}
       </tbody>
     </table>
   </div>
