@@ -1,27 +1,12 @@
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Component from './component';
-import {
-  getItems,
-  getGroundTruth,
-  createGroundTruthHasError,
-  createGroundTruthIsLoading,
-  getPredictions,
-} from '../rootReducer';
 import { makePredictions, resetPrediction } from '../PosUi/prediction/actions';
 import { setGroundTruth } from '../PosUi/groundTruth/actions';
 import {
   addItemsToReciept,
   restoreDefault,
 } from '../PosUi/confirmationScreen/actions';
-
-const mapStateToProps = (state) => ({
-  predictions: getPredictions(state),
-  items: getItems(state),
-  gt: getGroundTruth(state),
-  createGroundTruthHasError: createGroundTruthHasError(state),
-  createGroundTruthIsLoading: createGroundTruthIsLoading(state),
-});
 
 const mapDispatchToProps = (dispatch) => ({
   makePrediction: (port) => {
@@ -39,8 +24,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const ConnectedComponent = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Component);
+const ConnectedComponent = connect(null, mapDispatchToProps)(Component);
 export default ConnectedComponent;

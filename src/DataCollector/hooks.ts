@@ -4,9 +4,9 @@ import { toastr } from 'react-redux-toastr';
 export default (
   makePrediction: (...args: any[]) => any,
   addItemsToReciept: (...args: any[]) => any,
-  createGroundTruthHasError: boolean,
-  createGroundTruthIsLoading: boolean,
-  gt: Object,
+  groundTruthHasError: boolean,
+  groundTruthIsLoading: boolean,
+  gt: Record<string, any>,
   predictions: any[]
 ) => {
   const prevGroundTruthIsLoading = useRef(false);
@@ -16,21 +16,21 @@ export default (
   }, [makePrediction]);
 
   useEffect(() => {
-    if (createGroundTruthHasError) {
+    if (groundTruthHasError) {
       toastr.error(
         'Failed to store ground truth.',
         'Probably you use this snapshot already. Or check if agent is running'
       );
     }
     if (
-      !createGroundTruthIsLoading &&
+      !groundTruthIsLoading &&
       prevGroundTruthIsLoading.current &&
-      !createGroundTruthHasError
+      !groundTruthHasError
     ) {
       toastr.success('Sample stored', '');
     }
-    prevGroundTruthIsLoading.current = createGroundTruthIsLoading;
-  }, [createGroundTruthHasError, createGroundTruthIsLoading]);
+    prevGroundTruthIsLoading.current = groundTruthIsLoading;
+  }, [groundTruthHasError, groundTruthIsLoading]);
 
   useEffect(() => {
     const onKeyDown = ({ keyCode }: KeyboardEvent) => {

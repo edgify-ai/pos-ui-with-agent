@@ -5,14 +5,14 @@ import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 
 type Props = {
-  items: any[];
+  items: object;
   predictions: any[];
   makePrediction: (...args: any[]) => any;
   setGroundTruth: (...args: any[]) => any;
   addItemsToReciept: (...args: any[]) => any;
-  gt: Object;
-  createGroundTruthHasError: boolean;
-  createGroundTruthIsLoading: boolean;
+  gt: Record<string, any>;
+  groundTruthHasError: boolean;
+  groundTruthIsLoading: boolean;
 };
 
 const useStyles = makeStyles({
@@ -32,8 +32,8 @@ const ActionsPanel: React.FC<Props> = ({
   setGroundTruth,
   addItemsToReciept,
   gt,
-  createGroundTruthHasError,
-  createGroundTruthIsLoading,
+  groundTruthHasError,
+  groundTruthIsLoading,
 }) => {
   const classes = useStyles();
 
@@ -71,7 +71,7 @@ const ActionsPanel: React.FC<Props> = ({
           variant="contained"
           disableElevation
           className={classes.button}
-          disabled={createGroundTruthIsLoading || createGroundTruthHasError}
+          disabled={groundTruthIsLoading || groundTruthHasError}
           onClick={() => addItemsToReciept(gt, predictions)}
         >
           Save All (space)

@@ -1,35 +1,38 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Container } from '@material-ui/core';
 import ActionsPanel from './components/ActionsPanel';
 import Cameras from './components/Cameras';
 import useDataCollectorEffects from './hooks';
+import {
+  getItems,
+  getGroundTruth,
+  createGroundTruthHasError,
+  createGroundTruthIsLoading,
+  getPredictions,
+} from '../rootReducer';
 
 type Props = {
-  items: any[];
   makePrediction: (...args: any[]) => any;
   setGroundTruth: (...args: any[]) => any;
   addItemsToReciept: (...args: any[]) => any;
-  gt: Object;
-  predictions: any[];
-  createGroundTruthHasError: boolean;
-  createGroundTruthIsLoading: boolean;
 };
 
 const DataCollector: React.FC<Props> = ({
-  items,
   makePrediction,
   setGroundTruth,
   addItemsToReciept,
-  gt,
-  predictions,
-  createGroundTruthHasError,
-  createGroundTruthIsLoading,
 }) => {
+  const items = useSelector(getItems);
+  const gt = useSelector(getGroundTruth);
+  const predictions = useSelector(getPredictions);
+  const groundTruthHasError = useSelector(createGroundTruthHasError);
+  const groundTruthIsLoading = useSelector(createGroundTruthIsLoading);
   useDataCollectorEffects(
     makePrediction,
     addItemsToReciept,
-    createGroundTruthHasError,
-    createGroundTruthIsLoading,
+    groundTruthHasError,
+    groundTruthIsLoading,
     gt,
     predictions
   );
@@ -42,8 +45,8 @@ const DataCollector: React.FC<Props> = ({
         setGroundTruth={setGroundTruth}
         addItemsToReciept={addItemsToReciept}
         gt={gt}
-        createGroundTruthHasError={createGroundTruthHasError}
-        createGroundTruthIsLoading={createGroundTruthIsLoading}
+        groundTruthHasError={groundTruthHasError}
+        groundTruthIsLoading={groundTruthIsLoading}
       />
       <Cameras
         predictions={predictions}

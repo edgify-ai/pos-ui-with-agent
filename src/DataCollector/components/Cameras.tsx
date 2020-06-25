@@ -6,7 +6,7 @@ type Props = {
   predictions: any[];
   makePrediction: (...args: any[]) => any;
   addItemsToReciept: (...args: any[]) => any;
-  gt: Object;
+  gt: Record<string, any>;
 };
 
 const Cameras: React.FC<Props> = ({

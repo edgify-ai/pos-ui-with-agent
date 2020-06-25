@@ -42,7 +42,7 @@ export const getGroundTruth = ({ groundTruth }) =>
 
 export const getItemsByCategory = ({ itemsByCategory }) =>
   ItemsByCategory.getItemsByCategory(itemsByCategory);
-export const getItems = (state) => ItemsByCategory.getItems(state);
+export const getItems = () => ItemsByCategory.getItems();
 
 export const getMaxTopPredictions = ({ config }) =>
   Config.getMaxTopPredictions(config);
