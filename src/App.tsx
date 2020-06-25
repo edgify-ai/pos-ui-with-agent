@@ -10,7 +10,7 @@ import './App.css';
 import PosUI from './PosUi';
 import Category from './PosUi/category';
 import ConfirmationScreen from './PosUi/confirmationScreen';
-import DataCollectionScreen from './DataCollector/index';
+import DataCollectionScreen from './DataCollector';
 
 export default () => (
   <Provider store={store}>
