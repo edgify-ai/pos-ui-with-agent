@@ -38,11 +38,11 @@ export const getPredictionItems = ({ prediction }) =>
   Prediction.getPredictionItems(prediction);
 
 export const getGroundTruth = ({ groundTruth }) =>
-  GroundTruth.getGroudTruth(groundTruth);
+  GroundTruth.getGroundTruth(groundTruth);
 
 export const getItemsByCategory = ({ itemsByCategory }) =>
   ItemsByCategory.getItemsByCategory(itemsByCategory);
-export const getItems = (state) => ItemsByCategory.getItems(state);
+export const getItems = () => ItemsByCategory.getItems();
 
 export const getMaxTopPredictions = ({ config }) =>
   Config.getMaxTopPredictions(config);

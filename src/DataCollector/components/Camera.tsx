@@ -2,8 +2,15 @@ import React from 'react';
 import { Grid, Card, CardMedia, CardActions, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+type Props = {
+  image: string;
+  port: number;
+  captureImage: (...args: any[]) => any;
+  onSave: (...args: any[]) => any;
+};
+
 const useStyles = makeStyles({
-  card: { height: 300 },
+  card: { height: 300, width: 280 },
   media: { height: '80%', width: '96%', margin: 'auto', marginTop: '2%' },
   button: {
     backgroundColor: '#2ca0f7',
@@ -13,10 +20,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({ image, port, captureImage, onSave }) => {
+const Camera: React.FC<Props> = ({ image, port, captureImage, onSave }) => {
   const classes = useStyles();
   return (
-    <Grid item xs={4} border={1}>
+    <Grid item>
       <Card className={classes.card}>
         <CardMedia
           image={`data:image/jpeg;base64,${image}`}
@@ -47,3 +54,5 @@ export default ({ image, port, captureImage, onSave }) => {
     </Grid>
   );
 };
+
+export default Camera;
