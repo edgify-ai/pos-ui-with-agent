@@ -56,7 +56,7 @@ export default ({
   image,
   price,
   addItemToReciept,
-  rawPrediction,
+  prediction,
 }: Props) => {
   return (
     <div>
@@ -113,7 +113,7 @@ export default ({
                   </Link>
                   <Link
                     to={'/'}
-                    onClick={() => addItemToReciept(gt, rawPrediction)}
+                    onClick={() => addItemToReciept(gt, prediction)}
                   >
                     <div className="approveButton">Print</div>
                   </Link>

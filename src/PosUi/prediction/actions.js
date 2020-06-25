@@ -1,23 +1,41 @@
 import * as EdgifyClient from '../../EdgifyClients';
 export const GET_PREDICTION_LOADING = 'GET_PREDICTION_LOADING';
+export const GET_PREDICTIONS_SUCCESS = 'GET_PREDICTIONS_SUCCESS';
 export const GET_PREDICTION_SUCCESS = 'GET_PREDICTION_SUCCESS';
 export const GET_PREDICTION_FAILURE = 'GET_PREDICTION_FAILURE';
 export const RESET_PREDICTION = 'RESET_PREDICTION';
 
-export const makePrediction = () => async dispatch => {
+const makePrediction = async (port, dispatch) => {
+  const { prediction } = await EdgifyClient.makePrediction(port)
+  const raw = prediction.getPrediction ()
+  dispatch ({
+    type: GET_PREDICTION_SUCCESS,
+    payload: {
+      json: raw.toObject (),
+      raw,
+      port
+    },
+  });
+}
+
+export const makePredictions = port => async dispatch => {
   dispatch ({
     type: GET_PREDICTION_LOADING,
   });
   try {
-    const predictions = (await EdgifyClient.makePredictions()).map(prediction => {
+    if (port) {
+      return await makePrediction(port, dispatch)
+    }
+    const predictions = (await EdgifyClient.makePredictions()).map(({ prediction, port }) => {
       const raw = prediction.getPrediction ()
       return {
         json: raw.toObject (),
-        raw
+        raw,
+        port
       }
     });
     dispatch ({
-      type: GET_PREDICTION_SUCCESS,
+      type: GET_PREDICTIONS_SUCCESS,
       payload: predictions,
     });
   } catch (e) {

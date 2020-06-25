@@ -1,5 +1,6 @@
 import {
   GET_PREDICTION_LOADING,
+  GET_PREDICTIONS_SUCCESS,
   GET_PREDICTION_SUCCESS,
   GET_PREDICTION_FAILURE,
   RESET_PREDICTION
@@ -25,10 +26,18 @@ export default (state = defaultState, action) => {
         loading: false,
         error: true,
       };
-    case GET_PREDICTION_SUCCESS:
+    case GET_PREDICTIONS_SUCCESS:
       return {
-        ...state,
         predictions: action.payload,
+        loading: false,
+        error: false,
+      };
+    case GET_PREDICTION_SUCCESS:
+      const predictions = state.predictions.length
+        ? state.predictions.map(prediction => prediction.port === action.payload.port ? action.payload : prediction)
+        : [action.payload]
+      return {
+        predictions,
         loading: false,
         error: false,
       };
@@ -39,7 +48,7 @@ export default (state = defaultState, action) => {
   }
 };
 
-export const getPredictions = ({predictions}) => predictions;
+export const getPredictions = ({predictions}) => predictions
 export const getOriginalResponses = ({predictions}) => predictions.map(({raw}) => raw);
-export const getCurrentImages = ({predictions}) => predictions.map(({json}) => json && json.image.image);
-export const getPredictionItems = ({predictions}) => predictions.map(({json}) => (json && json.predictionsList) || []);
+export const getCurrentImages = ({predictions}) => predictions.map(({json}) => json?.image.image);
+export const getPredictionItems = ({predictions}) => predictions.map(({json}) => (json?.predictionsList) || []);

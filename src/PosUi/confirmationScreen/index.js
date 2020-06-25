@@ -4,14 +4,14 @@ import ChosenItem from './component';
 import { addItemsToReciept } from './actions';
 import {
   getWeight,
-  getRawPredictions,
+  getPredictions,
   getGroundTruth,
   getItems,
 } from '../../rootReducer';
 
 const mapStateToProps = state => {
   let weight = getWeight(state);
-  const rawPredictions = getRawPredictions(state);
+  const prediction = getPredictions(state)[0];
   const gt = getGroundTruth(state);
   const item = getItems(state)[gt]
   const price = item && item.price && '0.00'
@@ -22,13 +22,13 @@ const mapStateToProps = state => {
     gt,
     image:item.image,
     price,
-    rawPredictions
+    prediction
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  addItemToReciept: (gt, rawPrediction) =>
-    dispatch(addItemsToReciept(gt, rawPrediction))
+  addItemToReciept: (gt, prediction) =>
+    dispatch(addItemsToReciept(gt, [prediction]))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChosenItem);
