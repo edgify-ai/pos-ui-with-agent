@@ -13,6 +13,7 @@ const Cameras: React.FC<Props> = ({
   predictions,
   makePrediction,
   addItemsToReciept,
+  gt,
 }) => {
   return (
     <Grid
@@ -21,7 +22,7 @@ const Cameras: React.FC<Props> = ({
       spacing={4}
       justify="space-around"
     >
-      {predictions.map(({ json, port, raw, gt }) => {
+      {predictions.map(({ json, port, raw }) => {
         const image = json?.image.image;
         const captureImage = () => makePrediction(port);
         const onSave = () => addItemsToReciept(gt, [{ raw, port }]);
