@@ -25,9 +25,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  makePrediction: (port) => {
+  makePrediction: (config) => {
     dispatch(restoreDefault());
-    dispatch(makePredictions(port));
+    dispatch(makePredictions(config));
   },
   resetPrediction: () => dispatch(resetPrediction()),
   setGroundTruth: (gt) => dispatch(setGroundTruth(gt)),

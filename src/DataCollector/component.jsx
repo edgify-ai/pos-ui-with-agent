@@ -82,13 +82,14 @@ export default ({
         spacing={4}
         justify="space-around"
       >
-        {predictions.map(({ json, port, raw }) => {
+        {predictions.map(({ json, config, raw }) => {
+          const { port, host } = config;
           const image = json?.image.image;
-          const captureImage = () => makePrediction(port);
-          const onSave = () => addItemsToReciept(gt, [{ raw, port }]);
+          const captureImage = () => makePrediction(config);
+          const onSave = () => addItemsToReciept(gt, [{ raw, config }]);
           return (
             <Camera
-              key={image + port}
+              key={port + host}
               image={image}
               port={port}
               captureImage={captureImage}

@@ -6,7 +6,7 @@ import PosUI from './component';
 import { getPredictionImages } from '../rootReducer';
 import { makePredictions, resetPrediction } from './prediction/actions';
 import { setRandomWeightValue, resetWeightValue } from './weight/actions';
-import { defaultPort } from '../EdgifyClients';
+import { defaultConfig } from '../EdgifyClients';
 
 const mapStateToProps = (state) => ({
   currentImage: getPredictionImages(state)[0],
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   makePrediction: () => {
-    dispatch(makePredictions(defaultPort));
+    dispatch(makePredictions(defaultConfig));
     dispatch(setRandomWeightValue());
   },
   resetWeightValue: () => dispatch(resetWeightValue()),
