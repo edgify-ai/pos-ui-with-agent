@@ -5,8 +5,7 @@ import {
   GroundTruth,
 } from 'edgify-agent-api/prediction_pb';
 
-const getGRPCUrl = (port) => {
-  const pageHostname = window.location.host.split(':')[0];
+const getGRPCUrl = (port, pageHostname) => {
   const pageProtocol = window.location.protocol;
   return `${pageProtocol}\\\\${pageHostname}:${port}`;
 };
@@ -14,11 +13,17 @@ const getGRPCUrl = (port) => {
 const request = new XMLHttpRequest();
 request.open('GET', '/clients/config.json', false);
 request.send(null);
-const { ports } = JSON.parse(request.response);
+const { configs } = JSON.parse(request.response);
+const clientsConfigs = configs.map(({ port, host = 'localhost' }) => ({
+  port,
+  host,
+}));
 
-const clients = ports.map((port) => new EdgifyServiceClient(getGRPCUrl(port)));
+const clients = clientsConfigs.map(
+  ({ port, host }) => new EdgifyServiceClient(getGRPCUrl(port, host))
+);
 
-const makePredictionInClient = (client, port) =>
+const makePredictionInClient = (client, config) =>
   new Promise((resolve, reject) => {
     const req = new PredictionRequest();
     client.getPrediction(req, (err, prediction) => {
@@ -27,31 +32,37 @@ const makePredictionInClient = (client, port) =>
       } else {
         resolve({
           prediction,
-          port,
+          config,
         });
       }
     });
   });
 
-export const defaultPort = ports[0];
+export const defaultConfig = clientsConfigs[0];
 
-const getClientByPort = (port) =>
-  clients[ports.findIndex((clientPort) => clientPort === port)];
+const getClientByConfig = ({ port, host }) =>
+  clients[
+    clientsConfigs.findIndex(
+      (client) => client.port === port && client.host === host
+    )
+  ];
 
-export const makePrediction = (port) =>
-  makePredictionInClient(getClientByPort(port), port);
+export const makePrediction = (config) =>
+  makePredictionInClient(getClientByConfig(config), config);
 
 export const makePredictions = () =>
   Promise.all(
-    clients.map((client, i) => makePredictionInClient(client, ports[i]))
+    clients.map((client, i) =>
+      makePredictionInClient(client, clientsConfigs[i])
+    )
   );
 
 export const createGroundTruth = (label, predictions) =>
   Promise.all(
-    predictions.map(({ raw, port }) => {
+    predictions.map(({ raw, config }) => {
       const req = new GroundTruthRequest();
       const gt = new GroundTruth();
-      const client = getClientByPort(port);
+      const client = getClientByConfig(config);
       gt.setPrediction(raw);
       gt.setLabel(label);
       req.setGroundTruth(gt);

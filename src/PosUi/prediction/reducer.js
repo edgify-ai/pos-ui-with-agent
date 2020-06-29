@@ -38,7 +38,8 @@ export default (state = defaultState, action) => {
         error: false,
         predictions: state.predictions.length
           ? state.predictions.map((prediction) =>
-              prediction.port === action.payload.port
+              prediction.config.port === action.payload.config.port &&
+              prediction.config.host === action.payload.config.host
                 ? action.payload
                 : prediction
             )

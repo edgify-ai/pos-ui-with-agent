@@ -18,8 +18,8 @@ export default (
   useEffect(() => {
     if (createGroundTruthHasError) {
       toastr.error(
-        'Failed to store ground truth. Probably you use this snapshot already. Or check if agent is running',
-        { timeOut: 0 }
+        'Failed to store ground truth',
+        'Probably you use this snapshot already. Or check if agent is running'
       );
     }
     if (
