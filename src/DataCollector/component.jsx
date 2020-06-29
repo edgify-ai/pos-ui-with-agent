@@ -91,6 +91,7 @@ export default ({
             <Camera
               key={port + host}
               image={image}
+              host={host}
               port={port}
               captureImage={captureImage}
               onSave={onSave}

@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({ image, port, captureImage, onSave }) => {
+export default ({ image, port, host, captureImage, onSave }) => {
   const classes = useStyles();
   return (
     <Grid item xs={4} border={1}>
@@ -24,7 +24,12 @@ export default ({ image, port, captureImage, onSave }) => {
         />
         <CardActions>
           <Grid container justify="space-around" alignItems="center">
-            {`Port ${port}`}
+            <Grid>
+              <Grid>{host}</Grid>
+              <Grid container justify="center">
+                {port}
+              </Grid>
+            </Grid>
             <Button
               className={classes.button}
               variant="contained"

@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr';
 import * as EdgifyClient from '../../EdgifyClients';
 
 export const GET_PREDICTION_LOADING = 'GET_PREDICTION_LOADING';
@@ -43,6 +44,10 @@ export const makePredictions = (clientConfig) => async (dispatch) => {
       payload: predictions,
     });
   } catch (e) {
+    toastr.error(
+      'Failed to make predictions',
+      'Please check your connection config'
+    );
     dispatch({
       type: GET_PREDICTION_FAILURE,
       payload: e,
