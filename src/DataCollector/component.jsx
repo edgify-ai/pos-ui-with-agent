@@ -7,6 +7,9 @@ import Camera from './camera';
 import useDataCollectorEffects from './hooks';
 
 const useStyles = makeStyles({
+  panel: {
+    height: '120px',
+  },
   button: {
     backgroundColor: '#2ca0f7',
     color: 'white',
@@ -41,7 +44,20 @@ export default ({
   };
   return (
     <Container style={{ marginTop: '50px' }} maxWidth="md">
-      <Grid container spacing={4} justify="center">
+      <Grid
+        container
+        spacing={4}
+        justify="center"
+        alignItems="center"
+        className={classes.panel}
+      >
+        <Grid item>
+          <img
+            src={gt?.image}
+            alt={gt?.label}
+            style={{ minWidth: 80, width: 80 }}
+          />
+        </Grid>
         <Grid item>
           <Autocomplete
             id="labels"
@@ -85,12 +101,14 @@ export default ({
         {predictions.map(({ json, config, raw }) => {
           const { port, host } = config;
           const image = json?.image.image;
+          const uuid = json?.image.uuid;
           const captureImage = () => makePrediction(config);
           const onSave = () => addItemsToReciept(gt, [{ raw, config }]);
           return (
             <Camera
               key={port + host}
               image={image}
+              uuid={uuid}
               host={host}
               port={port}
               captureImage={captureImage}

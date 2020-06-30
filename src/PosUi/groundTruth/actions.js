@@ -7,5 +7,5 @@ export const setGroundTruth = (gt) => ({
 
 export const resetGroundTruth = () => ({
   type: SET_GROUND_TRUTH,
-  payload: '',
+  payload: {},
 });
