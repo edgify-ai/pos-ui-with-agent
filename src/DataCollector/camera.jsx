@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   card: { height: 300 },
   media: { height: '80%', width: '96%', margin: 'auto', marginTop: '2%' },
+  uuid: { margin: 10 },
   button: {
     backgroundColor: '#2ca0f7',
     color: 'white',
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({ image, port, host, captureImage, onSave }) => {
+export default ({ image, uuid, port, host, captureImage, onSave }) => {
   const classes = useStyles();
   return (
     <Grid item xs={4} border={1}>
@@ -49,6 +50,7 @@ export default ({ image, port, host, captureImage, onSave }) => {
           </Grid>
         </CardActions>
       </Card>
+      <Grid className={classes.uuid}>{uuid}</Grid>
     </Grid>
   );
 };

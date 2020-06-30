@@ -27,7 +27,7 @@ export default (
       prevGroundTruthIsLoading.current &&
       !createGroundTruthHasError
     ) {
-      toastr.success('Sample stored');
+      toastr.success('Sample stored', '', { timeOut: 600 });
     }
     prevGroundTruthIsLoading.current = createGroundTruthIsLoading;
   }, [createGroundTruthHasError, createGroundTruthIsLoading]);

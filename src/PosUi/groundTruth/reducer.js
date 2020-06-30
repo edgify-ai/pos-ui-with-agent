@@ -1,7 +1,7 @@
 import { SET_GROUND_TRUTH } from './actions';
 
 const defaultState = {
-  data: '',
+  data: {},
 };
 
 export default (state = defaultState, action) => {
@@ -9,7 +9,7 @@ export default (state = defaultState, action) => {
     case SET_GROUND_TRUTH:
       return {
         ...state,
-        data: action.payload,
+        data: action.payload ?? {},
       };
     default:
       return state;
