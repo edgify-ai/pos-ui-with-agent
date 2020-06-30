@@ -2,25 +2,10 @@ version: '2.4'
 services:
   web: 
     container_name: pos-ui-demo
-    image: 'gcr.io/edgify-framework/pos-ui-demo'
+    image: 'edgify/edgify-pos-ui-demo:shufersal3'
     environment:
       - REACT_APP_PREDICTOR_HOST=localhost
+    #volumes:
+    #  - /home/ubuntu/config.json:/usr/share/nginx/html/clients/config.json      
     ports:
       - '3000:80'
-
-  data-stream:
-    container_name: data-stream
-    image: 'gcr.io/edgify-framework/new-data-stream'
-    environment:
-      - EDGIFY_SOCKET_URL=ws://api.staging.edgify.ai/adonis-ws
-      - EDGIFY_DEVICE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2NvdW50SWQiOjEsImRldmljZUlkIjo2LCJyb2xlIjoiUk9MRV9ERVZJQ0UiLCJ0eXBlIjoicmVhbCIsImlhdCI6MTU4MzIxMzM0Mn0.7yoBO9wU9hYVvT5Gg_VBbHbDBhw9R2FYUE0-tLEd__8
-      - EDGIFY_LABELS_UPDATE_INTERVAL_SECONDS=60
-      - EDGIFY_DATA_STREAM_MAX_TOTAL_SIZE=10737418240
-      - EDGIFY_DELETE_SAMPLES_FROM_DB_INTERVAL_SECONDS=5
-      - EDGIFY_PING_INTERVAL_SECONDS=15
-      - DATABASE_URL=sqlite:///data/data-stream.db
-      - SECRET_KEY=no-key
-    ports:
-      - '8000:8000'
-    volumes:
-      - '/Users/sergey/edgify-ai/data-stream-data:/data_stream/data'

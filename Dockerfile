@@ -6,12 +6,14 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci
 RUN npm install react-scripts@3.4.1 -g --silent
-COPY . ./
+COPY public ./public
+COPY src ./src
 RUN npm run build
 
 FROM nginx
 COPY --from=builder /app/build/item_images /tmp/item_images
 COPY --from=builder /app/build usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 # COPY build/item_images /tmp/item_images
 # COPY build usr/share/nginx/html
 COPY startup.sh .
