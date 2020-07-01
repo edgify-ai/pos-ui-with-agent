@@ -33,8 +33,9 @@ export default (
   }, [createGroundTruthHasError, createGroundTruthIsLoading]);
 
   useEffect(() => {
-    const onKeyDown = ({ keyCode }) => {
-      switch (keyCode) {
+    const onKeyDown = (event) => {
+      event.preventDefault();
+      switch (event.keyCode) {
         case 16:
           makePrediction();
           break;
