@@ -29,16 +29,18 @@ export const makePredictions = (clientConfig) => async (dispatch) => {
     if (clientConfig) {
       return await makePrediction(clientConfig, dispatch);
     }
-    const predictions = (await EdgifyClient.makePredictions()).map(
-      ({ prediction, config }) => {
-        const raw = prediction.getPrediction();
-        return {
-          json: raw.toObject(),
-          raw,
-          config,
-        };
-      }
-    );
+    const predictionsResponse = await EdgifyClient.makePredictions();
+    const groupId = predictionsResponse[0].prediction.getPrediction()
+      .array[5][0];
+    const predictions = predictionsResponse.map(({ prediction, config }) => {
+      const raw = prediction.getPrediction();
+      raw.array[5][2] = groupId;
+      return {
+        json: raw.toObject(),
+        raw,
+        config,
+      };
+    });
     dispatch({
       type: GET_PREDICTIONS_SUCCESS,
       payload: predictions,
