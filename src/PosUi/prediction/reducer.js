@@ -33,16 +33,21 @@ export default (state = defaultState, action) => {
         error: false,
       };
     case GET_PREDICTION_SUCCESS:
+      // eslint-disable-next-line no-case-declarations
+      const groupId = action.payload.raw.array[5][0];
       return {
         loading: false,
         error: false,
         predictions: state.predictions.length
-          ? state.predictions.map((prediction) =>
-              prediction.config.port === action.payload.config.port &&
-              prediction.config.host === action.payload.config.host
-                ? action.payload
-                : prediction
-            )
+          ? state.predictions.map((prediction) => {
+              const newPrediction =
+                prediction.config.port === action.payload.config.port &&
+                prediction.config.host === action.payload.config.host
+                  ? action.payload
+                  : prediction;
+              newPrediction.raw.array[5][2] = groupId;
+              return newPrediction;
+            })
           : [action.payload],
       };
     case RESET_PREDICTION:
