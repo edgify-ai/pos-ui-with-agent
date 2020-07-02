@@ -34,12 +34,12 @@ export default (
 
   useEffect(() => {
     const onKeyDown = (event) => {
-      event.preventDefault();
       switch (event.keyCode) {
         case 16:
           makePrediction();
           break;
         case 32:
+          event.preventDefault();
           addItemsToReciept(gt, predictions);
           break;
         default:
