@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default ({ image, uuid, port, host, captureImage, onSave }) => {
+const Camera = ({ image, uuid, port, host, captureImage, onSave }) => {
   const classes = useStyles();
   return (
     <Grid item xs={4} border={1}>
@@ -54,3 +54,5 @@ export default ({ image, uuid, port, host, captureImage, onSave }) => {
     </Grid>
   );
 };
+
+export default React.memo(Camera);

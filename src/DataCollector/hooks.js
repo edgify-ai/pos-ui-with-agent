@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { toastr } from 'react-redux-toastr';
 
 export default (
@@ -10,6 +10,7 @@ export default (
   predictions
 ) => {
   const prevGroundTruthIsLoading = useRef(false);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     makePrediction();
@@ -28,9 +29,10 @@ export default (
       !createGroundTruthHasError
     ) {
       toastr.success('Sample stored', '', { timeOut: 600 });
+      setCount(count + 1);
     }
     prevGroundTruthIsLoading.current = createGroundTruthIsLoading;
-  }, [createGroundTruthHasError, createGroundTruthIsLoading]);
+  }, [createGroundTruthHasError, createGroundTruthIsLoading, count]);
 
   useEffect(() => {
     const onKeyDown = (event) => {
@@ -48,4 +50,6 @@ export default (
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [makePrediction, addItemsToReciept, gt, predictions]);
+
+  return { count, setCount };
 };
