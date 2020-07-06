@@ -4,7 +4,7 @@ import ActionsPanel from './components/ActionsPanel';
 import Cameras from './components/Cameras';
 import useDataCollectorEffects from './hooks';
 
-const DataCollector = ({
+const Component = ({
   items,
   makePrediction,
   setGroundTruth,
@@ -46,4 +46,4 @@ const DataCollector = ({
   );
 };
 
-export default DataCollector;
+export default Component;
