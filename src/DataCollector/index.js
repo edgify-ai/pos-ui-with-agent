@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import Component from './component';
+import DataCollector from './DataCollector';
 import {
   getItems,
   getGroundTruth,
@@ -43,5 +43,5 @@ const mapDispatchToProps = (dispatch) => ({
 const ConnectedComponent = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Component);
+)(DataCollector);
 export default ConnectedComponent;
