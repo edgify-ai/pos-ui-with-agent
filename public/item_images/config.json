@@ -15,6 +15,31 @@
       "price": 0,
       "image": "/item_images/images_pub/AppleSmith.png"
     },
+    "AppleGoldenDelicious": {
+      "label": "Apple Golden Delicious",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleGoldenDelicious.png"
+    },
+    "AppleStarking": {
+      "label": "Apple Starking",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleStarking.png"
+    },
+    "AppleYonatan": {
+      "label": "Apple Yonatan",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleYonatan.png"
+    },
+    "AppleAnna": {
+      "label": "Apple Anna",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleAnna.png"
+    },
+    "AppleGala": {
+      "label": "Apple Gala",
+      "price": 0,
+      "image": "/item_images/images_pub/AppleGala.png"
+    },
     "Banana": {
       "label": "Banana",
       "price": 0,
@@ -30,6 +55,16 @@
       "price": 0,
       "image": "/item_images/images_pub/Grapefruit.png"
     },
+    "GrapefruitRed": {
+      "label": "Grapefruit Red",
+      "price": 0,
+      "image": "/item_images/images_pub/GrapefruitRed.png"
+    },
+    "GrapefruitYellow": {
+      "label": "Grapefruit Yellow",
+      "price": 0,
+      "image": "/item_images/images_pub/GrapefruitYellow.png"
+    },
     "Kiwi": {
       "label": "Kiwi",
       "price": 0,
@@ -39,6 +74,11 @@
       "label": "Mango",
       "price": 0,
       "image": "/item_images/images_pub/nomodel-mango.png"
+    },
+    "Nectarine": {
+      "label": "Nectarine",
+      "price": 0,
+      "image": "/item_images/images_pub/Nectarine.png"
     },
     "Orange": {
       "label": "Orange",
@@ -157,6 +197,16 @@
       "price": 0,
       "image": "/item_images/images_pub/BellPepperYellow.png"
     },
+    "BellPepperGreenLight": {
+      "label": "Bell Pepper Green Light",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperGreenLight.png"
+    },
+    "BellPepperOrange": {
+      "label": "Bell Pepper Orange",
+      "price": 0,
+      "image": "/item_images/images_pub/BellPepperOrange.png"
+    },
     "Cabbage": {
       "label": "Cabbage",
       "price": 0,
@@ -166,6 +216,11 @@
       "label": "Carrot",
       "price": 0,
       "image": "/item_images/images_pub/Carrot.png"
+    },
+    "CarrotInBag": {
+      "label": "Carrot In Bag",
+      "price": 0,
+      "image": "/item_images/images_pub/CarrotInBag.png"
     },
     "Cauliflower": {
       "label": "Cauliflower",
@@ -181,6 +236,11 @@
       "label": "Eggplant",
       "price": 0,
       "image": "/item_images/images_pub/Eggplant.png"
+    },
+    "EggplantBaladi": {
+      "label": "Eggplant Baladi",
+      "price": 0,
+      "image": "/item_images/images_pub/EggplantBaladi.png"
     },
     "Kohlrabi": {
       "label": "Kohlrabi",
