@@ -32,7 +32,7 @@ export default (
       setCount(count + 1);
     }
     prevGroundTruthIsLoading.current = createGroundTruthIsLoading;
-  }, [createGroundTruthHasError, createGroundTruthIsLoading]);
+  }, [createGroundTruthHasError, createGroundTruthIsLoading, count]);
 
   useEffect(() => {
     const onKeyDown = (event) => {
