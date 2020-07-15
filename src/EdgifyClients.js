@@ -47,15 +47,40 @@ const getClientByConfig = ({ port, host }) =>
     )
   ];
 
-export const makePrediction = (config) =>
-  makePredictionInClient(getClientByConfig(config), config);
+export const makePrediction = async (config) => {
+  const timestamp = new Date();
+  const result = await makePredictionInClient(
+    getClientByConfig(config),
+    config
+  );
+  // eslint-disable-next-line no-console
+  console.log(
+    `It took ${
+      new Date() - timestamp
+    } ms to take picture and make prediction from agent with config ${JSON.stringify(
+      config
+    )}`
+  );
+  return result;
+};
 
-export const makePredictions = () =>
-  Promise.all(
+export const makePredictions = async () => {
+  const timestamp = new Date();
+  const results = await Promise.all(
     clients.map((client, i) =>
       makePredictionInClient(client, clientsConfigs[i])
     )
   );
+  // eslint-disable-next-line no-console
+  console.log(
+    `It took ${
+      new Date() - timestamp
+    } ms to take picture and make prediction from all agents with configs ${JSON.stringify(
+      clientsConfigs
+    )}`
+  );
+  return results;
+};
 
 export const createGroundTruth = (label, predictions) =>
   Promise.all(
