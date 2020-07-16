@@ -13,6 +13,7 @@ import {
 
 const OTHER_FRUIT_LABEL = 'OtherFruit';
 const NO_FRUIT_LABEL = 'NoFruit';
+const BAG_COVER = 'BagCover';
 
 const mapStateToProps = (state) => {
   let allPredictions = getPredictionItems(state)[0];
@@ -27,19 +28,17 @@ const mapStateToProps = (state) => {
 
   let topTotalAUC = 0;
 
-  const unknownItem =
-    allPredictions &&
-    allPredictions[0] &&
-    allPredictions[0].dataList[0] === OTHER_FRUIT_LABEL;
+  const firstPredictionLabel = allPredictions?.[0]?.dataList[0];
 
-  const emptyScale =
-    allPredictions &&
-    allPredictions[0] &&
-    allPredictions[0].dataList[0] === NO_FRUIT_LABEL;
+  const unknownItem = firstPredictionLabel === OTHER_FRUIT_LABEL;
+  const emptyScale = firstPredictionLabel === NO_FRUIT_LABEL;
+  const bagCovers = firstPredictionLabel === BAG_COVER;
 
   allPredictions = allPredictions.filter((prediction) => {
     return (
-      [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL].indexOf(prediction.dataList[0]) === -1
+      [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].indexOf(
+        prediction.dataList[0]
+      ) === -1
     );
   });
 
@@ -62,6 +61,7 @@ const mapStateToProps = (state) => {
     }),
     noPredictedItems: emptyScale || topTotalAUC < getAccuracyThreshold(state),
     unknownItem,
+    bagCovers,
   };
 };
 
