@@ -12,7 +12,7 @@
     "edgify-agent-api": "git+https://github.com/edgify-ai/edgify-agent-sdk-js.git",
     "google-protobuf": "^3.11.4",
     "history": "^5.0.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "node-sass": "^4.12.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
