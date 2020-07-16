@@ -398,5 +398,12 @@
       "price": 0,
       "image": "/item_images/images_pub/NoFruit.jpg"
     }
+  },
+  "BagCover": {
+    "BagCover": {
+      "label": "Bag Cover",
+      "price": 0,
+      "image": "/item_images/images_pub/NoFruit.jpg"
+    }
   }
 }

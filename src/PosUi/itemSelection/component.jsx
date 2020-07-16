@@ -24,12 +24,18 @@ const renderPredictedItems = (predictions, selectItem) => (
 
 const ItemSelection = ({
   unknownItem,
+  bagCovers,
   noPredictedItems,
   predictions,
   selectItem,
 }) => {
   if (unknownItem) {
     return renderNoPredictedItems('UNKNOWN ITEM, PLEASE SELECT FROM MENU');
+  }
+  if (bagCovers) {
+    return renderNoPredictedItems(
+      'A bag is covering the field of view - please place the item again'
+    );
   }
   if (noPredictedItems) {
     return renderNoPredictedItems();
