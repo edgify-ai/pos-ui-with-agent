@@ -1,0 +1,44 @@
+steps:
+  - id: 'Get Latest Builder Image'
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      docker pull gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-latest || exit 0     
+
+  - id: 'Build Docker Builder Image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build',
+          '--target', 'builder',
+          '--cache-from', 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-latest',
+          '-t', 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-latest',
+          '.']
+
+  - id: 'Get Latest Image'
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      docker pull gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:latest || exit 0 
+      
+  - id: 'Build Docker Image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: ['build', 
+            '--cache-from', 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:latest',
+            '--cache-from', 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-latest',
+            '-t', 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:latest',
+            '.']
+
+  - id: 'Docker Tag Version'
+    name: 'gcr.io/cloud-builders/docker'
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        docker tag gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-latest gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:builder-${SHORT_SHA} &&
+        docker tag gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:latest gcr.io/${PROJECT_ID}/edgify-pos-ui-demo:${SHORT_SHA}
+
+images:
+  - 'gcr.io/${PROJECT_ID}/edgify-pos-ui-demo'      
