@@ -8,6 +8,7 @@ import GroundTruthReducer, * as GroundTruth from './PosUi/groundTruth/reducer';
 import ItemsByCategoryReducer, * as ItemsByCategory from './PosUi/itemsByCategory/reducer';
 import ConfigReducer, * as Config from './PosUi/config/reducer';
 import CreateGroundTruthReducer, * as CreateGroundTruth from './PosUi/confirmationScreen/reducer';
+import AlertsCounterReducer, * as AlertsCounter from './PosUi/alertsCounter/reducer';
 
 export default combineReducers({
   categories: CategoriesReducer,
@@ -17,6 +18,7 @@ export default combineReducers({
   createGroundTruth: CreateGroundTruthReducer,
   itemsByCategory: ItemsByCategoryReducer,
   config: ConfigReducer,
+  alertsCounter: AlertsCounterReducer,
   toastr: toastrReducer,
 });
 
@@ -53,3 +55,6 @@ export const createGroundTruthIsLoading = ({ createGroundTruth }) =>
   CreateGroundTruth.isLoading(createGroundTruth);
 export const createGroundTruthHasError = ({ createGroundTruth }) =>
   CreateGroundTruth.hasError(createGroundTruth);
+
+export const getAlertsCounter = ({ alertsCounter }) =>
+  AlertsCounter.getAlertsCounter(alertsCounter);

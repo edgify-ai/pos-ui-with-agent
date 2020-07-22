@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
   setGroundTruth: (gt) => dispatch(setGroundTruth(gt)),
   addItemsToReciept: (gt, rawPrediction) => {
     if (_.isEmpty(gt)) {
+      // eslint-disable-next-line no-alert
       alert('Please select a label');
       return;
     }
