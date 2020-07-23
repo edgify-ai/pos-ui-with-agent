@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
   let allPredictions = getPredictionItems(state)[0];
   if (_.isEmpty(allPredictions)) {
     return {
-      unknownItem: false,
+      unknownItem: true,
       noPredictedItems: true,
       predictions: [],
     };
