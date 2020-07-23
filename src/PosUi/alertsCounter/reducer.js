@@ -1,29 +1,14 @@
 import { ALERTS_RESET, ALERTS_INCREASE } from './actions';
 
-const alertThreshold = (() => {
-  const thresholdKey = 'fraudConf';
-  const queryParams = new URLSearchParams(window.location.search);
-  const threshold = queryParams.get(thresholdKey);
-  return parseFloat(threshold) || 1;
-})();
-
-const defaultState = {
-  counter: 0,
-  alertThreshold,
-};
-
-export default (state = defaultState, action) => {
+export default (state = 0, action) => {
   switch (action.type) {
     case ALERTS_INCREASE:
-      return {
-        ...state,
-        counter: state.counter + 1,
-      };
+      return state + 1;
     case ALERTS_RESET:
-      return defaultState;
+      return 0;
     default:
       return state;
   }
 };
 
-export const getAlertsCounter = (alertsCounter) => alertsCounter.counter;
+export const getAlertsCounter = (alertsCounter) => alertsCounter;

@@ -13,7 +13,7 @@ export const resetAlerts = () => (dispatch) => {
 
 export const increaseAlertsIfNeeded = (gt) => (dispatch, getState) => {
   const state = getState();
-  const { alertThreshold } = state.alertsCounter;
+  const { alertThreshold } = state.config;
   const firstGuess =
     state.prediction.predictions[0]?.json.predictionsList?.[0]?.dataList;
   const firstLabel = firstGuess?.[0];
