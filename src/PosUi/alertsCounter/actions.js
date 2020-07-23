@@ -15,9 +15,9 @@ export const increaseAlertsIfNeeded = (gt) => (dispatch, getState) => {
   const state = getState();
   const { alertThreshold } = state.alertsCounter;
   const firstGuess =
-    state.prediction.predictions[0].json.predictionsList[0].dataList;
-  const firstLabel = firstGuess[0];
-  const accuracy = firstGuess[1];
+    state.prediction.predictions[0]?.json.predictionsList?.[0]?.dataList;
+  const firstLabel = firstGuess?.[0];
+  const accuracy = firstGuess?.[1];
   const payload =
     ![OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER, gt].includes(firstLabel) &&
     accuracy > alertThreshold;
