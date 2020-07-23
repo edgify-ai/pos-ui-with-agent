@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
     case ALERTS_INCREASE:
       return {
         ...state,
-        counter: state.counter + action.payload,
+        counter: state.counter + 1,
       };
     case ALERTS_RESET:
       return defaultState;
