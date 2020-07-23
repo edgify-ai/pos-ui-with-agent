@@ -30,7 +30,9 @@ const mapStateToProps = (state) => {
 
   const firstPredictionLabel = allPredictions?.[0]?.dataList[0];
 
-  const unknownItem = firstPredictionLabel === OTHER_FRUIT_LABEL;
+  const unknownItem = [OTHER_FRUIT_LABEL, undefined].includes(
+    firstPredictionLabel
+  );
   const emptyScale = firstPredictionLabel === NO_FRUIT_LABEL;
   const bagCovers = firstPredictionLabel === BAG_COVER;
 
