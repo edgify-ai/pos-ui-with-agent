@@ -1,0 +1,12 @@
+.AlertsCounter {
+  border-radius: 50%;
+  background-color: #f4cccc;
+  cursor: pointer;
+  display: flex;
+
+  .number {
+    color: #980000;
+    line-height: 100%;
+    margin: auto;
+  }
+}

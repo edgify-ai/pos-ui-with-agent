@@ -1,5 +1,6 @@
 const thresholdKey = 'threshold';
 const maxPredictionsKey = 'maxPredictions';
+const alertThresholdKey = 'fraudConf';
 
 const queryParams = new URLSearchParams(window.location.search);
 
@@ -32,9 +33,19 @@ const accuracyThreshold = (() => {
   return 0.5;
 })();
 
+const alertThreshold = (() => {
+  const threshold = queryParams.get(alertThresholdKey);
+  if (threshold) {
+    localStorage.setItem(alertThresholdKey, threshold);
+    return +threshold;
+  }
+  return +localStorage.getItem(alertThresholdKey) || 1;
+})();
+
 const config = {
   maxTopPredictions,
   accuracyThreshold,
+  alertThreshold,
 };
 
 export default (state = config) => {
