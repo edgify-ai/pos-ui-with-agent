@@ -388,7 +388,28 @@
       "image": "/item_images/images_pub/NoFruit.jpg"
     }
   },
-  "pastries": {},
+  "pastries": {
+    "ChallaBun": {
+      "label": "ChallaBun",
+      "price": 0,
+      "image": "/item_images/images_pub/ChallaBun.png"
+    },
+    "HamburgerBun": {
+      "label": "HamburgerBun",
+      "price": 0,
+      "image": "/item_images/images_pub/HamburgerBun.png"
+    },
+    "HotDogBun": {
+      "label": "HotDogBun",
+      "price": 0,
+      "image": "/item_images/images_pub/HotDogBun.png"
+    },
+    "CiabattaBun": {
+      "label": "CiabattaBun",
+      "price": 0,
+      "image": "/item_images/images_pub/CiabattaBun.jpg"
+    }    
+  },
   "meat": {},
   "groceries": {},
   "more": {},
@@ -399,8 +420,8 @@
       "image": "/item_images/images_pub/NoFruit.jpg"
     }
   },
-  "BagCover": {
-    "BagCover": {
+  "Bag": {
+    "Bag": {
       "label": "Bag Cover",
       "price": 0,
       "image": "/item_images/images_pub/NoFruit.jpg"
