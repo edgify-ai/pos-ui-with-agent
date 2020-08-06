@@ -21,7 +21,7 @@ const GroundTruthSelector = ({ gt, setGroundTruth, items, index }) => {
       </Grid>
       <Grid item>
         <Autocomplete
-          id="labels"
+          id={`labels-${index}`}
           onChange={(event, value) => setGroundTruth(value, index)}
           options={_.uniqBy(
             Object.values(items).sort((a, b) => a.label.localeCompare(b.label)),

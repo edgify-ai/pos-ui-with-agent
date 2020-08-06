@@ -45,17 +45,15 @@ const ActionsPanel = ({
   return (
     <Grid container spacing={2} justify="flex-start" alignItems="center">
       <Grid item>
-        {Array(multiLabel)
-          .fill(0)
-          .map((_, i) => (
-            <GroundTruthSelector
-              key={`gt-selector-${i}`} // eslint-disable-line react/no-array-index-key
-              gt={gt[i]}
-              setGroundTruth={setGroundTruth}
-              items={items}
-              index={i}
-            />
-          ))}
+        {[...Array(multiLabel).keys()].map((i) => (
+          <GroundTruthSelector
+            key={`gt-selector-${i}`} // eslint-disable-line react/no-array-index-key
+            gt={gt[i]}
+            setGroundTruth={setGroundTruth}
+            items={items}
+            index={i}
+          />
+        ))}
       </Grid>
       <Grid item>
         <Button
