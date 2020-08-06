@@ -13,6 +13,7 @@ const Component = ({
   predictions,
   createGroundTruthHasError,
   createGroundTruthIsLoading,
+  multiLabel,
 }) => {
   const { count, setCount } = useDataCollectorEffects(
     makePrediction,
@@ -35,6 +36,7 @@ const Component = ({
         groundTruthIsLoading={createGroundTruthIsLoading}
         count={count}
         setCount={setCount}
+        multiLabel={multiLabel}
       />
       <Cameras
         predictions={predictions}
