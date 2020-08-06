@@ -40,7 +40,10 @@ export const getPredictionItems = ({ prediction }) =>
   Prediction.getPredictionItems(prediction);
 
 export const getGroundTruth = ({ groundTruth }) =>
-  GroundTruth.getGroudTruth(groundTruth);
+  GroundTruth.getGroundTruth(groundTruth);
+
+export const getGroundTruths = ({ groundTruth }) =>
+  GroundTruth.getGroundTruths(groundTruth);
 
 export const getItemsByCategory = ({ itemsByCategory }) =>
   ItemsByCategory.getItemsByCategory(itemsByCategory);
@@ -50,6 +53,7 @@ export const getMaxTopPredictions = ({ config }) =>
   Config.getMaxTopPredictions(config);
 export const getAccuracyThreshold = ({ config }) =>
   Config.getAccuracyThreshold(config);
+export const getMultiLabel = ({ config }) => Config.getMultiLabel(config);
 
 export const createGroundTruthIsLoading = ({ createGroundTruth }) =>
   CreateGroundTruth.isLoading(createGroundTruth);

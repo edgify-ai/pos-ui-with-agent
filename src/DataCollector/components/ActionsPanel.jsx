@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button, Grid, TextField } from '@material-ui/core';
-import { Autocomplete } from '@material-ui/lab';
-import _ from 'lodash';
+import { Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import GroundTruthSelector from './GroundTruthSelector';
 
 const useStyles = makeStyles({
   button: {
@@ -34,6 +33,7 @@ const ActionsPanel = ({
   groundTruthIsLoading,
   count,
   setCount,
+  multiLabel,
 }) => {
   const classes = useStyles();
 
@@ -45,26 +45,17 @@ const ActionsPanel = ({
   return (
     <Grid container spacing={2} justify="flex-start" alignItems="center">
       <Grid item>
-        <img
-          src={gt?.image}
-          alt={gt?.label}
-          style={{ minWidth: 80, width: 80 }}
-        />
-      </Grid>
-      <Grid item>
-        <Autocomplete
-          id="labels"
-          onChange={(event, value) => setGroundTruth(value)}
-          options={_.uniqBy(
-            Object.values(items).sort((a, b) => a.label.localeCompare(b.label)),
-            'label'
-          )}
-          getOptionLabel={(option) => option.label || ''}
-          style={{ width: 300 }}
-          renderInput={(params) => (
-            <TextField {...params} label="Ground Truth" variant="outlined" />
-          )}
-        />
+        {Array(multiLabel)
+          .fill(0)
+          .map((_, i) => (
+            <GroundTruthSelector
+              key={`gt-selector-${i}`} // eslint-disable-line react/no-array-index-key
+              gt={gt[i]}
+              setGroundTruth={setGroundTruth}
+              items={items}
+              index={i}
+            />
+          ))}
       </Grid>
       <Grid item>
         <Button

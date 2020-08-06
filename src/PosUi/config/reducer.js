@@ -1,6 +1,7 @@
 const thresholdKey = 'threshold';
 const maxPredictionsKey = 'maxPredictions';
 const alertThresholdKey = 'fraudConf';
+const multiLabelKey = 'multiLabel';
 
 const queryParams = new URLSearchParams(window.location.search);
 
@@ -42,10 +43,26 @@ const alertThreshold = (() => {
   return +localStorage.getItem(alertThresholdKey) || 1;
 })();
 
+const getMultiLabelFromParam = (param) => {
+  if (!param || param === 'false') {
+    return 1;
+  }
+  return param === 'true' ? 2 : +param || 1;
+};
+const multiLabel = (() => {
+  const multiLabelParam = queryParams.get(multiLabelKey);
+  if (multiLabelParam) {
+    localStorage.setItem(multiLabelKey, multiLabelParam);
+    return getMultiLabelFromParam(multiLabelParam);
+  }
+  return getMultiLabelFromParam(localStorage.getItem(multiLabelKey));
+})();
+
 const config = {
   maxTopPredictions,
   accuracyThreshold,
   alertThreshold,
+  multiLabel,
 };
 
 export default (state = config) => {
@@ -54,3 +71,4 @@ export default (state = config) => {
 
 export const getMaxTopPredictions = (state) => state.maxTopPredictions;
 export const getAccuracyThreshold = (state) => state.accuracyThreshold;
+export const getMultiLabel = (state) => state.multiLabel;
