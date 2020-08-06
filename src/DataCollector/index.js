@@ -33,9 +33,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetPrediction: () => dispatch(resetPrediction()),
   setGroundTruth: (gt, index) => dispatch(setGroundTruth(gt, index)),
-  addItemsToReciept: (gt, rawPrediction) => {
-    const label = gt
-      .map(({ real_label: realLabel }) => realLabel)
+  addItemsToReciept: (gts, rawPrediction) => {
+    const label = gts
+      // eslint-disable-next-line camelcase
+      .map((gt) => gt?.real_label)
       .sort((a, b) => a.localeCompare(b))
       .reduce((acc, realLabel) => (realLabel ? `${acc}__${realLabel}` : acc));
     if (_.isEmpty(label)) {
