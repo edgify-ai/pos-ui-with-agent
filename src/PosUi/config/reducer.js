@@ -7,18 +7,7 @@ const showConfKey = 'showConf';
 
 const queryParams = new URLSearchParams(window.location.search);
 
-const getValueFromKey = (
-  key,
-  defaultValue,
-  transform = (v, dv) => +v || dv
-) => {
-  const strValue = queryParams.get(key);
-  if (strValue) {
-    localStorage.setItem(key, strValue);
-    return transform(strValue, defaultValue);
-  }
-  return transform(localStorage.getItem(key), defaultValue);
-};
+const getNumberFromParam = (param, defaultValue) => +param || defaultValue;
 
 const getMultiLabelFromParam = (param, defaultValue) => {
   if (!param || param === 'false') {
@@ -38,16 +27,20 @@ const getBooleanFromParam = (param, defaultValue) => {
   }
 };
 
+const getValueFromKey = (key, defaultValue, transform = getNumberFromParam) => {
+  const strValue = queryParams.get(key);
+  if (strValue) {
+    localStorage.setItem(key, strValue);
+    return transform(strValue, defaultValue);
+  }
+  return transform(localStorage.getItem(key), defaultValue);
+};
+
 const maxTopPredictions = getValueFromKey(maxPredictionsKey, 5);
-
 const accuracyThreshold = getValueFromKey(thresholdKey, 0.5);
-
 const alertThreshold = getValueFromKey(alertThresholdKey, 1);
-
 const itemThreshold = getValueFromKey(itemThresholdKey, 0);
-
 const multiLabel = getValueFromKey(multiLabelKey, 1, getMultiLabelFromParam);
-
 const showConfidenceScore = getValueFromKey(
   showConfKey,
   false,
