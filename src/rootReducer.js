@@ -54,6 +54,9 @@ export const getMaxTopPredictions = ({ config }) =>
 export const getAccuracyThreshold = ({ config }) =>
   Config.getAccuracyThreshold(config);
 export const getMultiLabel = ({ config }) => Config.getMultiLabel(config);
+export const getItemThreshold = ({ config }) => Config.getItemThreshold(config);
+export const getShowConfidenceScore = ({ config }) =>
+  Config.getShowConfidenceScore(config);
 
 export const createGroundTruthIsLoading = ({ createGroundTruth }) =>
   CreateGroundTruth.isLoading(createGroundTruth);

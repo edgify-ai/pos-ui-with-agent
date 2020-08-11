@@ -8,21 +8,24 @@ import {
   getPredictionItems,
   getMaxTopPredictions,
   getAccuracyThreshold,
+  getItemThreshold,
+  getShowConfidenceScore,
   getItems,
 } from '../../rootReducer';
 
 const OTHER_FRUIT_LABEL = 'OtherFruit';
 const NO_FRUIT_LABEL = 'NoFruit';
 const BAG_COVER = 'BagCover';
+const defaultStateToProps = {
+  unknownItem: true,
+  noPredictedItems: false,
+  predictions: [],
+};
 
 const mapStateToProps = (state) => {
   let allPredictions = getPredictionItems(state)[0];
   if (_.isEmpty(allPredictions)) {
-    return {
-      unknownItem: true,
-      noPredictedItems: true,
-      predictions: [],
-    };
+    return defaultStateToProps;
   }
   const maxTopPredictions = getMaxTopPredictions(state);
 
@@ -34,13 +37,18 @@ const mapStateToProps = (state) => {
   const emptyScale = firstPredictionLabel === NO_FRUIT_LABEL;
   const bagCovers = firstPredictionLabel === BAG_COVER;
 
+  const itemThreshold = getItemThreshold(state);
   allPredictions = allPredictions.filter((prediction) => {
     return (
       [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].indexOf(
         prediction.dataList[0]
-      ) === -1
+      ) === -1 && itemThreshold < prediction.dataList[1]
     );
   });
+
+  if (_.isEmpty(allPredictions)) {
+    return defaultStateToProps;
+  }
 
   const size = _.min([allPredictions.length, maxTopPredictions]);
   for (let i = 0; i < size; ++i) {
@@ -60,6 +68,7 @@ const mapStateToProps = (state) => {
       };
     }),
     noPredictedItems: emptyScale || topTotalAUC < getAccuracyThreshold(state),
+    showConfidenceScore: getShowConfidenceScore(state),
     unknownItem,
     bagCovers,
   };

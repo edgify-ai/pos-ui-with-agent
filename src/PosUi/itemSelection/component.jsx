@@ -11,12 +11,19 @@ const renderNoPredictedItems = (statusLabel = 'Place an item on the scale') => (
   </div>
 );
 
-const renderPredictedItems = (predictions, selectItem) => (
+const renderPredictedItems = (predictions, showConfidenceScore, selectItem) => (
   <div className="predictedItemsOuterContainer">
     <div className="sectionTitle">Select the correct item:</div>
     <div className="predictedItemsContainer">
       {predictions.map((p) => {
-        return <Item key={p.label} prediction={p} selectItem={selectItem} />;
+        return (
+          <Item
+            key={p.label}
+            prediction={p}
+            selectItem={selectItem}
+            showConfidenceScore={showConfidenceScore}
+          />
+        );
       })}
     </div>
   </div>
@@ -27,6 +34,7 @@ const ItemSelection = ({
   bagCovers,
   noPredictedItems,
   predictions,
+  showConfidenceScore,
   selectItem,
 }) => {
   if (unknownItem) {
@@ -40,7 +48,7 @@ const ItemSelection = ({
   if (noPredictedItems) {
     return renderNoPredictedItems();
   }
-  return renderPredictedItems(predictions, selectItem);
+  return renderPredictedItems(predictions, showConfidenceScore, selectItem);
 };
 
 export default ItemSelection;

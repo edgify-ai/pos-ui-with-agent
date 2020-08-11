@@ -5,6 +5,7 @@ import './item.scss';
 const Item = ({
   prediction: { label, textLabel, accuracy, image },
   selectItem,
+  showConfidenceScore,
 }) => {
   const width = '18%';
   const height = '100px';
@@ -18,7 +19,9 @@ const Item = ({
         {/* This is were I need to change the image tag to use the preloaded image */}
         <img className="itemImage" src={image} alt={label} style={{ height }} />
         <div className="itemLabel">{textLabel}</div>
-        <div className="itemLabel itemAccuracy">{accuracy}</div>
+        {showConfidenceScore && (
+          <div className="itemLabel itemAccuracy">{accuracy}</div>
+        )}
       </Link>
     </div>
   );

@@ -2,67 +2,65 @@ const thresholdKey = 'threshold';
 const maxPredictionsKey = 'maxPredictions';
 const alertThresholdKey = 'fraudConf';
 const multiLabelKey = 'multiLabel';
+const itemThresholdKey = 'itemThresh';
+const showConfKey = 'showConf';
 
 const queryParams = new URLSearchParams(window.location.search);
 
-const maxTopPredictions = (() => {
-  let q = queryParams.get(maxPredictionsKey);
-  if (q) {
-    q = parseInt(q, 10);
-    localStorage.setItem(maxPredictionsKey, q);
-    return q;
+const getValueFromKey = (
+  key,
+  defaultValue,
+  transform = (v, dv) => +v || dv
+) => {
+  const strValue = queryParams.get(key);
+  if (strValue) {
+    localStorage.setItem(key, strValue);
+    return transform(strValue, defaultValue);
   }
-  const ls = localStorage.getItem(maxPredictionsKey);
-  if (ls) {
-    return +ls;
-  }
+  return transform(localStorage.getItem(key), defaultValue);
+};
 
-  return 5;
-})();
-
-const accuracyThreshold = (() => {
-  let q = queryParams.get(thresholdKey);
-  if (q) {
-    q = parseFloat(q);
-    localStorage.setItem(thresholdKey, q);
-    return +q;
-  }
-  const ls = localStorage.getItem(thresholdKey);
-  if (ls) {
-    return +ls;
-  }
-  return 0.5;
-})();
-
-const alertThreshold = (() => {
-  const threshold = queryParams.get(alertThresholdKey);
-  if (threshold) {
-    localStorage.setItem(alertThresholdKey, threshold);
-    return +threshold;
-  }
-  return +localStorage.getItem(alertThresholdKey) || 1;
-})();
-
-const getMultiLabelFromParam = (param) => {
+const getMultiLabelFromParam = (param, defaultValue) => {
   if (!param || param === 'false') {
     return 1;
   }
-  return param === 'true' ? 2 : +param || 1;
+  return param === 'true' ? 2 : +param || defaultValue;
 };
-const multiLabel = (() => {
-  const multiLabelParam = queryParams.get(multiLabelKey);
-  if (multiLabelParam) {
-    localStorage.setItem(multiLabelKey, multiLabelParam);
-    return getMultiLabelFromParam(multiLabelParam);
+
+const getBooleanFromParam = (param, defaultValue) => {
+  switch (param) {
+    case 'true':
+      return true;
+    case 'false':
+      return false;
+    default:
+      return defaultValue;
   }
-  return getMultiLabelFromParam(localStorage.getItem(multiLabelKey));
-})();
+};
+
+const maxTopPredictions = getValueFromKey(maxPredictionsKey, 5);
+
+const accuracyThreshold = getValueFromKey(thresholdKey, 0.5);
+
+const alertThreshold = getValueFromKey(alertThresholdKey, 1);
+
+const itemThreshold = getValueFromKey(itemThresholdKey, 0);
+
+const multiLabel = getValueFromKey(multiLabelKey, 1, getMultiLabelFromParam);
+
+const showConfidenceScore = getValueFromKey(
+  showConfKey,
+  false,
+  getBooleanFromParam
+);
 
 const config = {
   maxTopPredictions,
   accuracyThreshold,
   alertThreshold,
   multiLabel,
+  itemThreshold,
+  showConfidenceScore,
 };
 
 export default (state = config) => {
@@ -72,3 +70,5 @@ export default (state = config) => {
 export const getMaxTopPredictions = (state) => state.maxTopPredictions;
 export const getAccuracyThreshold = (state) => state.accuracyThreshold;
 export const getMultiLabel = (state) => state.multiLabel;
+export const getItemThreshold = (state) => state.itemThreshold;
+export const getShowConfidenceScore = (state) => state.showConfidenceScore;
