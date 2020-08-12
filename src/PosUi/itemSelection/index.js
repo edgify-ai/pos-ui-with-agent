@@ -42,13 +42,9 @@ const mapStateToProps = (state) => {
     return (
       [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].indexOf(
         prediction.dataList[0]
-      ) === -1 && itemThreshold < prediction.dataList[1]
+      ) === -1
     );
   });
-
-  if (_.isEmpty(allPredictions)) {
-    return defaultStateToProps;
-  }
 
   const size = _.min([allPredictions.length, maxTopPredictions]);
   for (let i = 0; i < size; ++i) {
@@ -56,8 +52,10 @@ const mapStateToProps = (state) => {
   }
 
   const allItems = getItems(state);
-  return {
-    predictions: allPredictions.slice(0, size).map(({ dataList: p }) => {
+
+  const predictions = allPredictions
+    .slice(0, size)
+    .map(({ dataList: p }) => {
       const label = p[0];
       const accuracy = +p[1];
       return {
@@ -66,9 +64,17 @@ const mapStateToProps = (state) => {
         image: (allItems[label] && allItems[label].image) || '',
         textLabel: (allItems[label] && allItems[label].label) || '',
       };
-    }),
+    })
+    .filter(({ accuracy }) => itemThreshold < accuracy);
+
+  if (_.isEmpty(predictions)) {
+    return defaultStateToProps;
+  }
+
+  return {
     noPredictedItems: emptyScale || topTotalAUC < getAccuracyThreshold(state),
     showConfidenceScore: getShowConfidenceScore(state),
+    predictions,
     unknownItem,
     bagCovers,
   };
