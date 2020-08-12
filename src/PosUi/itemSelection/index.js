@@ -8,21 +8,24 @@ import {
   getPredictionItems,
   getMaxTopPredictions,
   getAccuracyThreshold,
+  getItemThreshold,
+  getShowConfidenceScore,
   getItems,
 } from '../../rootReducer';
 
 const OTHER_FRUIT_LABEL = 'OtherFruit';
 const NO_FRUIT_LABEL = 'NoFruit';
 const BAG_COVER = 'BagCover';
+const defaultStateToProps = {
+  unknownItem: true,
+  noPredictedItems: false,
+  predictions: [],
+};
 
 const mapStateToProps = (state) => {
   let allPredictions = getPredictionItems(state)[0];
   if (_.isEmpty(allPredictions)) {
-    return {
-      unknownItem: true,
-      noPredictedItems: true,
-      predictions: [],
-    };
+    return defaultStateToProps;
   }
   const maxTopPredictions = getMaxTopPredictions(state);
 
@@ -34,6 +37,7 @@ const mapStateToProps = (state) => {
   const emptyScale = firstPredictionLabel === NO_FRUIT_LABEL;
   const bagCovers = firstPredictionLabel === BAG_COVER;
 
+  const itemThreshold = getItemThreshold(state);
   allPredictions = allPredictions.filter((prediction) => {
     return (
       [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].indexOf(
@@ -48,8 +52,10 @@ const mapStateToProps = (state) => {
   }
 
   const allItems = getItems(state);
-  return {
-    predictions: allPredictions.slice(0, size).map(({ dataList: p }) => {
+
+  const predictions = allPredictions
+    .slice(0, size)
+    .map(({ dataList: p }) => {
       const label = p[0];
       const accuracy = +p[1];
       return {
@@ -58,8 +64,17 @@ const mapStateToProps = (state) => {
         image: (allItems[label] && allItems[label].image) || '',
         textLabel: (allItems[label] && allItems[label].label) || '',
       };
-    }),
+    })
+    .filter(({ accuracy }) => itemThreshold < accuracy);
+
+  if (_.isEmpty(predictions)) {
+    return defaultStateToProps;
+  }
+
+  return {
     noPredictedItems: emptyScale || topTotalAUC < getAccuracyThreshold(state),
+    showConfidenceScore: getShowConfidenceScore(state),
+    predictions,
     unknownItem,
     bagCovers,
   };
