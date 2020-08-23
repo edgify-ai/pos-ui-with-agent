@@ -16,40 +16,57 @@ import {
 const OTHER_FRUIT_LABEL = 'OtherFruit';
 const NO_FRUIT_LABEL = 'NoFruit';
 const BAG_COVER = 'BagCover';
-const defaultStateToProps = {
-  unknownItem: true,
+const getStateToProps = (params) => ({
+  unknownItem: false,
   noPredictedItems: false,
+  bagCovers: false,
+  showConfidenceScore: false,
   predictions: [],
-};
+  ...params,
+});
 
 const mapStateToProps = (state) => {
   let allPredictions = getPredictionItems(state)[0];
   if (_.isEmpty(allPredictions)) {
-    return defaultStateToProps;
+    return getStateToProps({ unknownItem: true });
   }
   const maxTopPredictions = getMaxTopPredictions(state);
-
+  const size = _.min([allPredictions.length, maxTopPredictions]);
   let topTotalAUC = 0;
+  for (let i = 0; i < size; ++i) {
+    topTotalAUC += Number.parseFloat(allPredictions[i].dataList[1]);
+  }
 
+  if (topTotalAUC < getAccuracyThreshold(state)) {
+    return getStateToProps({ unknownItem: true });
+  }
+
+  const itemThreshold = getItemThreshold(state);
   const firstPredictionLabel = allPredictions?.[0]?.dataList[0];
+  const firstPredictionScoreIsValid =
+    itemThreshold < allPredictions?.[0]?.dataList[1];
+  if (!firstPredictionScoreIsValid) {
+    return getStateToProps({ unknownItem: true });
+  }
 
   const unknownItem = firstPredictionLabel === OTHER_FRUIT_LABEL;
   const emptyScale = firstPredictionLabel === NO_FRUIT_LABEL;
   const bagCovers = firstPredictionLabel === BAG_COVER;
 
-  const itemThreshold = getItemThreshold(state);
-  allPredictions = allPredictions.filter((prediction) => {
-    return (
-      [OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].indexOf(
-        prediction.dataList[0]
-      ) === -1
-    );
-  });
-
-  const size = _.min([allPredictions.length, maxTopPredictions]);
-  for (let i = 0; i < size; ++i) {
-    topTotalAUC += Number.parseFloat(allPredictions[i].dataList[1]);
+  if (unknownItem || emptyScale || bagCovers) {
+    return getStateToProps({
+      unknownItem,
+      bagCovers,
+      noPredictedItems: emptyScale,
+    });
   }
+
+  allPredictions = allPredictions.filter(
+    (prediction) =>
+      ![OTHER_FRUIT_LABEL, NO_FRUIT_LABEL, BAG_COVER].includes(
+        prediction.dataList[0]
+      )
+  );
 
   const allItems = getItems(state);
 
@@ -67,17 +84,10 @@ const mapStateToProps = (state) => {
     })
     .filter(({ accuracy }) => itemThreshold < accuracy);
 
-  if (_.isEmpty(predictions)) {
-    return defaultStateToProps;
-  }
-
-  return {
-    noPredictedItems: emptyScale || topTotalAUC < getAccuracyThreshold(state),
+  return getStateToProps({
     showConfidenceScore: getShowConfidenceScore(state),
     predictions,
-    unknownItem,
-    bagCovers,
-  };
+  });
 };
 
 const mapDispatchToProps = {
